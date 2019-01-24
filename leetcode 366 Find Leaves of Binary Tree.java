@@ -7,7 +7,7 @@ space: O(h)
 
 class Solution {
     public List<List<Integer>> findLeaves(TreeNode root) {
-        List<List<Integer>> leavesList = new ArrayList< List<Integer>>();
+        List<List<Integer>> leavesList = new ArrayList<List<Integer>>();
         List<Integer> leaves = new ArrayList<Integer>();
         
         while(root != null) {
