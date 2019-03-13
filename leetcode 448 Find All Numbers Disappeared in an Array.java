@@ -18,7 +18,7 @@ class Solution {
         
         for(int i = 0; i < nums.length; i++) {
             if(nums[i] > 0) {
-                ret.add(i+1);
+                ret.add(i + 1);
             }
         }
         return ret;
