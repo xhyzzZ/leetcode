@@ -2,8 +2,8 @@
 
 
 /*
-time: O()
-space: O()
+time: O(n)
+space: O(n)
 */
 public class Solution {
     public String fractionToDecimal(int numerator, int denominator) {
