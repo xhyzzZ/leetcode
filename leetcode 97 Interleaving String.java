@@ -20,7 +20,7 @@ public class Solution {
         }
 
         for(int i = 1; i < dp.length; i++) {
-        	for(j = 1; j < dp[0].length; j++) {
+        	for(int j = 1; j < dp[0].length; j++) {
         		dp[i][j] = (dp[i - 1][j] && s2.charAt(i - 1) == s3.charAt(i + j - 1))
         		        || (dp[i][j - 1] && s1.charAt(j - 1) == s3.charAt(i + j - 1));
         	}

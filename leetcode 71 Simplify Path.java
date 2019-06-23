@@ -7,24 +7,14 @@ space: O(n)
 */
 public class Solution {
     public String simplifyPath(String path) {
-        Stack<String> stack = new Stack<>();
-        String[] paths = path.split("/+"); // a . b .. .. c ""
-        for(String s : paths) {
-        	if(s.equals("..")) {
-        		if(!stack.isEmpty()) {
-        			stack.pop();
-        		}
-        	} else if(!s.equals(".") && s.equals("")) {
-        		stack.push(s);
-        	}
+        Deque<String> stack = new LinkedList<>();
+        Set<String> skip = new HashSet<>(Arrays.asList("..",".",""));
+        for (String dir : path.split("/")) {
+            if (dir.equals("..") && !stack.isEmpty()) stack.pop();
+            else if (!skip.contains(dir)) stack.push(dir);
         }
         String res = "";
-        while(!stack.isEmpty()) {
-        	res = "/" + stack.pop() + res;
-        }
-        if(res.length() == 0) {
-        	return "/";
-        }
-        return res;
+        for (String dir : stack) res = "/" + dir + res;
+        return res.isEmpty() ? "/" : res;
     }
 }
