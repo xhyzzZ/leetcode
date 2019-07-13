@@ -7,34 +7,45 @@ space: O()
 
 class Solution {
     public List<int[]> getSkyline(int[][] buildings) {
-        List<int[]> res = new ArrayList<>();
-        List<int[]> height = new ArrayList<>();     // height list to store all buildings' heights
-        for (int[] b : buildings) {
-            height.add(new int[]{b[0], - b[2]});    // start of a building, height stored as negtive
-            height.add(new int[]{b[1], b[2]});      // end of a building, height stored as positive
+        List<int[]> result = new ArrayList<>();
+        List<int[]> height = new ArrayList<>();
+        for(int[] b : buildings) {
+            // start point has negative height value
+            height.add(new int[]{b[0], -b[2]});
+            // end point has normal height value
+            height.add(new int[]{b[1], b[2]}); 
         }
-        Collections.sort(height, (a, b) -> (a[0] == b[0] ? a[1] - b[1] : a[0] - b[0]));     // sort the height list
-        
-        // a pq that stores all the encountered buildings' heights in descending order
-        PriorityQueue<Integer> pq = new PriorityQueue<>((a, b) -> (b - a));
+
+        // sort $height, based on the first value, if necessary, use the second to
+        // break ties
+        Collections.sort(height, (a, b) -> {
+                if(a[0] != b[0]) {
+                    return a[0] - b[0];
+                }  
+                return a[1] - b[1];
+        });
+
+        // Use a maxHeap to store possible heights
+        Queue<Integer> pq = new PriorityQueue<>((a, b) -> (b - a));
+        // Provide a initial value to make it more consistent
         pq.offer(0);
-        int preMax = 0;
-        
-        for (int[] h : height) {
-            if (h[1] < 0) {     // h[1] < 0, that means it meets a new building, so add it to pq
-                pq.offer(- h[1]);
-            } else {            // h[1] >=0, that means it has reached the end of the building, so remove it from pq
+        // Before starting, the previous max height is 0;
+        int prev = 0;
+        // visit all points in order
+        for(int[] h : height) {
+            if(h[1] < 0) { // a start point, add height
+                pq.offer(-h[1]);
+            } else {  // a end point, remove height
                 pq.remove(h[1]);
             }
-            
-            // the current max height in all encountered buildings
-            int curMax = pq.peek();
-            // if the max height is different from the previous one, that means a critical point is met, add to result list
-            if (curMax != preMax) {
-                res.add(new int[]{h[0], curMax});
-                preMax = curMax;
+            int cur = pq.peek(); // current max height;
+            // compare current max height with previous max height, update result and 
+            // previous max height if necessary
+            if(prev != cur) {
+                result.add(new int[]{h[0], cur});
+                prev = cur;
             }
         }
-        return res;
+        return result;    
     }
 }
