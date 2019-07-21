@@ -1,8 +1,8 @@
 //leetcode 393 UTF-8 Validation
 
 /*
-time: O()
-space: O()
+time: O(n)
+space: O(1)
 */
 
 class Solution {

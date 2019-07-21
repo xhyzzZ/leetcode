@@ -6,7 +6,7 @@ space: O()
 */
 
 public class Solution {
-    public int maxPoints(Point[] points) {
+    public int maxPoints(int[][] points) {
         /*
         遍历每个点，看它和后面的每个点构成的直线上有多少个点
         对每个点建立map，斜率是key
@@ -23,8 +23,8 @@ public class Solution {
             int overlap = 0;
             int lineMax = 0;
             for (int j = i + 1; j < l; j++) {
-                int x = points[i].x - points[j].x;
-                int y = points[i].y - points[j].y;
+                int x = points[i][0] - points[j][0];
+                int y = points[i][1] - points[j][1];
                 if (x == 0 && y == 0) {
                     overlap++;
                     continue;
