@@ -1,8 +1,8 @@
 //leetcode 353 Design Snake Game
 
 /*
-time: O()
-space: O()
+time: O(1)
+space: O(n)
 */
 
 class SnakeGame {
