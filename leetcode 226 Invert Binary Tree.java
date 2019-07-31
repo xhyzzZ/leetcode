@@ -1,8 +1,8 @@
 //leetcode 226 Invert Binary Tree
 
 /*
-time: O()
-space: O()
+time: O(n)
+space: O(h)
 */
 
 bfs
@@ -11,18 +11,18 @@ public class Solution {
         if (root == null) {
             return null;
         }
-        final Queue<TreeNode> queue = new LinkedList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
-        while(!queue.isEmpty()) {
-            final TreeNode node = queue.poll();
-            final TreeNode left = node.left;
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+            TreeNode left = node.left;
             node.left = node.right;
             node.right = left;
 
-            if(node.left != null) {
+            if (node.left != null) {
                 queue.offer(node.left);
             }
-            if(node.right != null) {
+            if (node.right != null) {
                 queue.offer(node.right);
             }
         }
@@ -37,8 +37,8 @@ public class Solution {
             return null;
         }
 
-        final TreeNode left = root.left,
-                right = root.right;
+        TreeNode left = root.left;
+        TreeNode right = root.right;
         root.left = invertTree(right);
         root.right = invertTree(left);
         return root;
