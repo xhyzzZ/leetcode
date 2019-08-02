@@ -7,13 +7,13 @@ space: O(logn)
 */
 public class Solution {
     public TreeNode sortedArrayToBST(int[] nums) {
-        if(nums.length == 0) return null;
+        if (nums.length == 0) return null;
         TreeNode head = helper(nums, 0, nums.length - 1);
         return head;
     }
 
     public TreeNode helper(int[] nums, int low, int high) {
-    	if(low > high) return null;
+    	if (low > high) return null;
 
     	int mid = (high - low) / 2 + low;
     	TreeNode node = new TreeNode(nums[mid]);

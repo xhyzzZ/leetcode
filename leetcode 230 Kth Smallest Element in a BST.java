@@ -7,7 +7,7 @@ space: O(h)
 
 dfs
 class Solution {
-	private static int number = 0;
+    private static int number = 0;
     private static int count = 0;
 
     public int kthSmallest(TreeNode root, int k) {
@@ -17,34 +17,31 @@ class Solution {
     }
 
     private void helper(TreeNode root) {
-    	if (root.left != null) helper(root.left);
-    	count--;
-    	if (count == 0) {
-    		number = root.val;
-    		return;
-    	}
-    	if (root.right != null) helper(root.right);
+        if (root.left != null) helper(root.left);
+        count--;
+        if (count == 0) {
+            number = root.val;
+            return;
+        }
+        if (root.right != null) helper(root.right);
     }
 }
 
 bfs
 class Solution {
-	public int kthSmallest(TreeNode root, int k) {
-    	Stack<TreeNode> stack = new Stack<>();
-      	while (root != null) {
-        	stack.push(root);
-        	root = root.left;
-      	}   
-      	while (k != 0) {
-        	TreeNode n = stack.pop();
-         	k--;
-          	if (k == 0) return n.val;
-          	TreeNode right = n.right;
-          	while (right != null) {
-            	stack.push(right);
-            	right = right.left;
-          	}
-      	}
-      	return -1; // never hit if k is valid
-	}
+    public int kthSmallest(TreeNode root, int k) {
+      	Stack<TreeNode> stack = new Stack<TreeNode>();
+        TreeNode cur = root;
+
+        while (cur != null || !stack.isEmpty()) {
+            while(cur != null) {
+                stack.push(cur);
+                cur = cur.left;
+            }
+            TreeNode node = stack.pop();
+            if (--k == 0) return node.val;
+            cur = node.right;
+        }
+        return root.val;    
+    }
 }
