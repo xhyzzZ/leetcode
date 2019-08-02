@@ -3,24 +3,27 @@
 
 /*
 time: O(n)
-space: O(n)
+space: O(h)
 */
 public class Solution {
     public TreeNode buildTree(int[] inorder, int[] postorder) {
-        if(inorder == null || postorder == null || inorder.length != postorder.length) return null;
-        HashMap<Integer, Integer> inMap = new HashMap<Integer, Integer>();
-        for(int i = 0; i < inorder.length; i++) {
-       		inMap.put(inorder[i], i);
-        } 
-        return helper(postorder.length - 1, 0, inorder.length - 1, inorder, postorder, inMap);
+        return build(inorder, postorder, postorder.length - 1, 0, inorder.length - 1);
     }
-
-    private TreeNode helper(int postEnd, int inStart, int inEnd, int[] inorder, int[] postorder, HashMap<Integer, Integer> inMap) {
-    	if(postEnd < 0 || inStart > inEnd) return null;
-    	TreeNode root = new TreeNode(postorder[postEnd]);
-    	int inIndex = inMap.get(root.val);
-    	root.left = helper(postEnd - (inEnd - inIndex + 1), inStart, inIndex - 1, inorder, postorder, inMap);
-    	root.right = helper(postEnd - 1, inIndex + 1, inEnd, inorder, postorder, inMap);
-    	return root;
+    private TreeNode build(int[] inorder, int[] postorder, int index, 
+                           int inorderStart, int inorderEnd) {
+        if (inorderStart > inorderEnd || index < 0) return null;
+        int rootVal = postorder[index];
+        int pos = inorderStart;
+        for (int i = inorderStart; i <= inorderEnd; i++) {
+            if (inorder[i] == rootVal) {
+                pos = i;
+                break;
+            }
+        }
+        int rightSubtreeLength = inorderEnd - pos;
+        TreeNode root = new TreeNode(rootVal);
+        root.left = build(inorder, postorder, index - rightSubtreeLength - 1, inorderStart, pos - 1);
+        root.right = build(inorder, postorder, index - 1, pos + 1, inorderEnd);
+        return root;
     }
 }

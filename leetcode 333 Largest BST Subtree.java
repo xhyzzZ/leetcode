@@ -5,6 +5,7 @@ time: O(n)
 space: O(h)
 */
 
+
 class Solution {
     class Result {  // (size, rangeLower, rangeUpper) -- size of current tree, range of current tree [rangeLower, rangeUpper]
         int size;

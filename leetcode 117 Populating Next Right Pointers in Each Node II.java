@@ -7,15 +7,28 @@ space: O(1)
 */
 public class Solution {
     public void connect(TreeLinkNode root) {
-        while(root != null){
-            TreeLinkNode tempChild = new TreeLinkNode(0);
-            TreeLinkNode currentChild = tempChild;
-            while(root!=null){
-                if(root.left != null) { currentChild.next = root.left; currentChild = currentChild.next;}
-                if(root.right != null) { currentChild.next = root.right; currentChild = currentChild.next;}
-                root = root.next;
+        TreeLinkNode dummyHead = new TreeLinkNode(0);
+        TreeLinkNode pre = dummyHead;
+        // - - - - - - - - - - - - - - - - - 
+        // 每一层 层序遍历建立链表
+        while (root != null) {
+            if (root.left != null) {
+                pre.next = root.left;
+                pre = pre.next;
             }
-            root = tempChild.next;
+            if (root.right != null) {
+                pre.next = root.right;
+                pre = pre.next;
+            }
+        // - - - - - - - - - - - - - - - - - -  
+            root = root.next;
+
+        // root为空，则重建dummyHead 
+            if (root == null) {
+                pre = dummyHead;
+                root = dummyHead.next;
+                dummyHead.next = null;
+            }
         }
     }
 }
