@@ -6,20 +6,20 @@ space: O()
 */
 public class Solution {
     public int lengthOfLongestSubstringTwoDistinct(String s) {
-        if(s.length() < 1) return 0;
+        if (s.length() < 1) return 0;
         HashMap<Character, Integer> index = new HashMap<Character, Integer>();
         int lo = 0;
         int hi = 0;
         int maxLength = 0;
-        while(hi < s.length()) {
-        	if(index.size() <= 2) {
+        while (hi < s.length()) {
+        	if (index.size() <= 2) {
         		char c = s.charAt(hi);
         		index.put(c, hi);
         		hi++;
-        	}
-        	if(index.size() > 2) {
+        	} 
+        	if (index.size() > 2) {
         		int leftMost = s.length();
-        		for(int i : index.values()) {
+        		for (int i : index.values()) {
         			leftMost = Math.min(leftMost, i);
         		}
         		char c = s.charAt(leftMost);
