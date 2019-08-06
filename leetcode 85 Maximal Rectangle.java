@@ -1,19 +1,19 @@
 //leetcode 85 Maximal Rectangle
 
 /*
-time: O()
+time: O(n^2)
 space: O()
 */
 public class Solution {
 	public int maximalRectangle(char[][] matrix) {
-	    if(matrix == null || matrix.length == 0 || matrix[0].length == 0) return 0;
+	    if (matrix == null || matrix.length == 0 || matrix[0].length == 0) return 0;
 	    
 	    int[] height = new int[matrix[0].length];
-	    for(int i = 0; i < matrix[0].length; i++) {
-	        if(matrix[0][i] == '1') height[i] = 1;
+	    for (int i = 0; i < matrix[0].length; i++) {
+	        if (matrix[0][i] == '1') height[i] = 1;
 	    }
 	    int result = largestInLine(height);
-	    for(int i = 1; i < matrix.length; i++) {
+	    for (int i = 1; i < matrix.length; i++) {
 	        resetHeight(matrix, height, i);
 	        result = Math.max(result, largestInLine(height));
 	    }
@@ -22,20 +22,20 @@ public class Solution {
 	}
 
 	private void resetHeight(char[][] matrix, int[] height, int idx) {
-	    for(int i = 0; i < matrix[0].length; i++) {
-	        if(matrix[idx][i] == '1') height[i] += 1;
+	    for (int i = 0; i < matrix[0].length; i++) {
+	        if (matrix[idx][i] == '1') height[i] += 1;
 	        else height[i] = 0;
 	    }
 	}    
 
 	public int largestInLine(int[] height) {
-	    if(height == null || height.length == 0) return 0;
+	    if (height == null || height.length == 0) return 0;
 	    int len = height.length;
 	    Stack<Integer> s = new Stack<Integer>();
 	    int maxArea = 0;
-	    for(int i = 0; i <= len; i++) {
+	    for (int i = 0; i <= len; i++) {
 	        int h = (i == len ? 0 : height[i]);
-	        if(s.isEmpty() || h >= height[s.peek()]) { 
+	        if (s.isEmpty() || h >= height[s.peek()]) { 
 	            s.push(i);
 	        } else {
 	            int tp = s.pop();
