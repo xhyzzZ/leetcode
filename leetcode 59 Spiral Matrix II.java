@@ -14,24 +14,24 @@ public class Solution {
         int colEnd = n - 1;
         int num = 1;
 
-        while(rowBegin <= rowEnd && colBegin <= colEnd) {
-        	for(int i = colBegin; i < colEnd; i++) {
+        while (rowBegin <= rowEnd && colBegin <= colEnd) {
+        	for (int i = colBegin; i < colEnd; i++) {
         		matrix[rowBegin][i] = num++;
         	}
         	rowBegin++;
  
-        	for(int i =rowBegin; i <= rowEnd; i++) {
-        		matrix[i][colEnd] = num++
+        	for (int i = rowBegin; i <= rowEnd; i++) {
+        		matrix[i][colEnd] = num++;
         	}
         	colEnd--;
 
-        	for(int i = colEnd; i >= colBegin; i--) {
-        		matrix[rowEnd][i] = num++
+        	for (int i = colEnd; i >= colBegin; i--) {
+        		matrix[rowEnd][i] = num++;
         	}
         	rowEnd--;
 
-        	for(int i = rowEnd; i >= rowBegin; i--) {
-        		matrix[i][rowBegin] = num++
+        	for (int i = rowEnd; i >= rowBegin; i--) {
+        		matrix[i][rowBegin] = num++;
         	}
         	colBegin++;
         }
