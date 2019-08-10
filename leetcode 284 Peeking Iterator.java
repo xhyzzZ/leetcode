@@ -12,8 +12,8 @@ class PeekingIterator implements Iterator<Integer> {
     boolean noSuchElement;
 
     public PeekingIterator(Iterator<Integer> iterator) {
-	// initialize any member here.
-	iter = iterator;
+    	// initialize any member here.
+    	iter = iterator;
         advanceIter();
     }
 

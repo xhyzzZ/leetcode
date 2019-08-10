@@ -17,7 +17,8 @@ class Solution {
 
 	    Map<Character, Set<Character>> graph = new HashMap<>();
 	    Map<Character, Integer> inDegreeMap = new HashMap<>();
-	    /* MUST initialize the map, to avoid null exception for those character that will have zero inDegrees (i.e. starting characters) */
+	    /* MUST initialize the map, to avoid null exception for those character 
+	    that will have zero inDegrees (i.e. starting characters) */
 	    for (String word : words) {
 	        for (char c : word.toCharArray()) {
 	            inDegreeMap.put(c, 0);
@@ -90,7 +91,6 @@ class Solution {
 	            }
 	        }
 	    }
-
 	    /* check if input order is valid */
 	    if (sb.length() != inDegreeMap.size()) {
 	        return "";

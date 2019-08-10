@@ -20,16 +20,16 @@ public class ZigzagIterator {
 
     public int next() {
         int out;
-        if(!isv2 && currInt < v1.size()) {
+        if (!isv2 && currInt < v1.size()) {
             out = v1.get(currInt);
-            if(currInt < v2.size())
+            if(currInt < v2.size()) {
                 isv2 = true;
-            else
-                ++currInt;
+            } else  ++currInt;
         } else {
             out = v2.get(currInt++);
-            if(currInt < v1.size())
+            if (currInt < v1.size()) {
                 isv2 = false;
+            }
         }
         return out;
     }
