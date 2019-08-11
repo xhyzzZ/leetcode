@@ -1,8 +1,8 @@
 //leetcode 382 Linked List Random Node
 
 /*
-time: O()
-space: O()
+time: O(n)
+space: O(m)
 */
 
 class Solution {
@@ -18,9 +18,9 @@ class Solution {
     public int getRandom() {
         ListNode c = head;
         int r = c.val;
-        for(int i = 1; c.next != null; i++) {
+        for (int i = 1; c.next != null; i++) {
             c = c.next;
-            if(random.nextInt(i + 1) == i) r = c.val;                        
+            if (random.nextInt(i + 1) == i) r = c.val;                        
         }
         return r;
     }

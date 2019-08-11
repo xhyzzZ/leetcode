@@ -8,9 +8,11 @@ space: O()
 class Solution {
 
     private int[] nums;
-    
+    private Random random;
+
     public Solution(int[] nums) {
         this.nums = nums;
+        random = new Random();
     }
     
     /** Resets the array to its original configuration and return it. */
@@ -20,12 +22,18 @@ class Solution {
     
     /** Returns a random shuffling of the array. */
     public int[] shuffle() {
-        int[] rand = new int[nums.length];
-        for (int i = 0; i < nums.length; i++){
-            int r = (int) (Math.random() * (i + 1));
-            rand[i] = rand[r];
-            rand[r] = nums[i];
+        if (nums == null) return null;
+        int[] copy = nums.clone();
+        for (int j = 1; j < copy.length; j++) {
+            int i = random.nextInt(j + 1);
+            swap(copy, i, j);
         }
-        return rand;
+        return copy;
+    }
+
+    private void swap(int[] copy, int i, int j) {
+        int t = copy[i];
+        copy[i] = copy[j];
+        copy[j] = t;
     }
 }

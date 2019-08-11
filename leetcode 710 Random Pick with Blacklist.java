@@ -32,7 +32,7 @@ class Solution {
     
     public int pick() {
         int p = r.nextInt(M);
-        if(map.containsKey(p)) {
+        if (map.containsKey(p)) {
         	return map.get(p);
         }
         return p;
