@@ -5,7 +5,7 @@ time: O(n)
 space: O(1)
 */
 
-class Solution {
+public class Solution {
     public int missingNumber(int[] nums) {
         int xor = 0, i = 0;
 		for (i = 0; i < nums.length; i++) {
@@ -13,5 +13,17 @@ class Solution {
 		}
 
 		return xor ^ i;
+    }
+}
+
+public class Solution {
+    public int missingNumber(int[] nums) {
+        int sum = 0;
+        for (int i = 0; i < nums.length; i++) {
+            sum += i;
+            sum -= nums[i];
+        }
+        sum += nums.length;
+        return sum;
     }
 }
