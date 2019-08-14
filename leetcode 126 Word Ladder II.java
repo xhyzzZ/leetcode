@@ -7,6 +7,7 @@ space: O()
 
 public class Solution {
     public List<List<String>> findLadders(String beginWord, String endWord, List<String> wordList) {
+	    
 	    List<List<String>> res = new ArrayList<>();
 	    Set<String> dict = new HashSet<>(wordList);
 	    if (!dict.contains(endWord)) return res;
@@ -16,18 +17,21 @@ public class Solution {
 	    end.add(endWord);
 	    Map<String, List<String>> map = new HashMap<String, List<String>>();
 	    
+	    // BFS 在这里只是起到一个更新 hashmap 的作用，hashmap 存着所有有效的 adjacency list
 	    bfs(dict, begin, end, map);
 	    List<String> temp = new ArrayList<>(Arrays.asList(beginWord));
+	    // DFS 负责返回并写入所有 paths
 	    dfs(res, temp, beginWord, endWord, map);
 	    
 	    return res;
 	}
-
+	// 因为我们使用bi-dfs，所以我们需要跟踪bfs的方向，并记录在hashmap中
 	private void bfs(Set<String> dict, Set<String> begin, Set<String> end, Map<String, List<String>> map) {
 	    
 	    boolean reversed = false;
 	    boolean terminate = false;
 	    while (begin.size() > 0) {
+	    	// 避免搜索重复元素，免得搜索路径上出现环
 	        dict.removeAll(begin);
 	        dict.removeAll(end);
 	        if (begin.size() > end.size()) {
@@ -83,9 +87,7 @@ public class Solution {
 	        res.add(new ArrayList<>(temp));
 	        return;
 	    }
-	    if (!map.containsKey(start))
-	        return;
-	    
+	    if (!map.containsKey(start)) return;   
 	    for (String word : map.get(start)) {
 	        temp.add(word);
 	        dfs(res, temp, word, end, map);
