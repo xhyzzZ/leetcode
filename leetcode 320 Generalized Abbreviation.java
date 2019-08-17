@@ -12,7 +12,7 @@ public class Solution {
 		return list;
 	}
 
-	private void dfs(List<String> list, StringBuilder sb, char[]word, int index, int curNum) {
+	private void dfs(List<String> list, StringBuilder sb, char[] word, int index, int curNum) {
 		int len = sb.length();
 		if (index == word.length) {
 			if (curNum != 0) sb.append(curNum);
