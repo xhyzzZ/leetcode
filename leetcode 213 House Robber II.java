@@ -1,27 +1,33 @@
 //leetcode 213 House Robber II
 
 /*
-time: O()
-space: O()
+time: O(n)
+space: O(1)
 */
 
 class Solution {
     public int rob(int[] nums) {
-        if (nums.length == 0) return 0;
-        if (nums.length == 1) return nums[0];
-        if (nums.length == 2) return Math.max(nums[0], nums[1]);
-        if (nums.length == 3) return Math.max(Math.max(nums[0], nums[1]), nums[2]);
-        return Math.max(rob1(Arrays.copyOfRange(nums, 1, nums.length)), nums[0] + rob1(Arrays.copyOfRange(nums, 2, nums.length - 1)));
+        if (nums.length == 1) return nums[0];  
+        return Math.max(rob0(nums), rob1(nums));
+    }
+    
+    public int rob0(int[] nums) {
+        int preMax = 0, curMax = 0;
+        for (int i = 0; i < nums.length - 1; i++) {
+            int tmp = curMax;
+            curMax = Math.max(preMax + nums[i], curMax);
+            preMax = tmp;  
+        }  
+        return curMax;
     }
     
     public int rob1(int[] nums) {
-        int preno = 0;
-        int preyes = nums[0];
+        int preMax = 0, curMax = 0;
         for (int i = 1; i < nums.length; i++) {
-            int tmp = preyes;
-            preyes = preno + nums[i];
-            preno = Math.max(preno, tmp);
-        }
-        return Math.max(preyes, preno);
+            int tmp = curMax;
+            curMax = Math.max(preMax + nums[i], curMax);
+            preMax = tmp;  
+        }  
+        return curMax;  
     }
 }

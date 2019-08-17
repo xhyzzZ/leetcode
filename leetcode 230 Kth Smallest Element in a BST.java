@@ -34,7 +34,7 @@ class Solution {
         TreeNode cur = root;
 
         while (cur != null || !stack.isEmpty()) {
-            while(cur != null) {
+            while (cur != null) {
                 stack.push(cur);
                 cur = cur.left;
             }

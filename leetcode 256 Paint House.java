@@ -4,22 +4,24 @@
 time: O(n)
 space: O(1)
 
-/* Typical 1D DP problem with 3 dp array red, green, blue
- * red[i] means the minimum cost to print house i to red; red[i] = Math.min(green[i - 1], blue[i - 1]) + costs[i]-0;
- * but since we only need data at i - 1 to update i, we only need to store the i-1 datapoint instead of the whole array
+/*
+如果第i个房子要涂成红色，那么他的值由第i - 1的房子（绿色和蓝色选最小的）加上这层红色的值
  */ 
 
 class Solution {
     public int minCost(int[][] costs) {
-    	if(costs == null) return 0;
-        int red = 0, green = 0, blue = 0;
-        int m = costs.length;
-        for (int i = 0; i < m; i++) {
-            int rr = red, bb = blue, gg = green; 
-            red = costs[i][0] + Math.min(bb, gg);
-            blue = costs[i][1] + Math.min(rr, gg);
-            green = costs[i][2] + Math.min(rr, bb);
+    	if (costs == null || costs.length == 0) return 0;
+        int lastR = costs[0][0];
+        int lastG = costs[0][1];
+        int lastB = costs[0][2];
+        for (int i = 1; i < costs.length; i++) {
+            int curR = Math.min(lastG, lastB) + costs[i][0];
+            int curG = Math.min(lastR, lastB) + costs[i][1];
+            int curB = Math.min(lastR, lastG) + costs[i][2];
+            lastR = curR;
+            lastG = curG;
+            lastB = curB;
         }
-        return Math.min(Math.min(blue, green), red); 
+        return Math.min(Math.min(lastR, lastG), lastB);
     }
 }
