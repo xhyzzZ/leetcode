@@ -17,9 +17,9 @@ class Solution {
 		for (int i = amount / coins[index]; i >= 0; i--) {
 			int newAmount = amount - i * coins[index];
 			int newCount = count + i;
-			if (newAmount > 0 && newCount + 1 < minCount) 
+			if (newAmount > 0 && newCount + 1 < minCount) {
 			    count(newAmount, index - 1, coins, newCount);
-			else{
+			} else {
 			    if (newAmount == 0 && newCount < minCount)
 			        minCount = newCount;
 			    break;
