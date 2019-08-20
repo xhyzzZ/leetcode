@@ -2,28 +2,20 @@
 
 /*
 time: O()
-space: O()
+space: O(n)
 */
 
 class Solution {
-    private int minCount = Integer.MAX_VALUE;
     public int coinChange(int[] coins, int amount) {
-       	Arrays.sort(coins);
-		count(amount, coins.length - 1, coins, 0);
-		return minCount == Integer.MAX_VALUE ? - 1 : minCount;
-    }
-	private void count(int amount, int index, int[] coins, int count) {
-	    if (index < 0 || count + 2 > minCount) return;
-		for (int i = amount / coins[index]; i >= 0; i--) {
-			int newAmount = amount - i * coins[index];
-			int newCount = count + i;
-			if (newAmount > 0 && newCount + 1 < minCount) {
-			    count(newAmount, index - 1, coins, newCount);
-			} else {
-			    if (newAmount == 0 && newCount < minCount)
-			        minCount = newCount;
-			    break;
+       	// dp[n] = min number of coins to make amount n;
+		int[] dp = new int[amount + 1];
+		Arrays.fill(dp, amount + 1);
+		dp[0] = 0;
+		for (int j = 0; j < coins.length; j++) {
+			for (int i = coins[j]; i <= amount; i++) {
+				dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1);
 			}
 		}
+		return dp[amount] == amount + 1 ? -1 : dp[amount];
     }
 }

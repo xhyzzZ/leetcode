@@ -8,8 +8,6 @@ public class Solution {
         ListNode dummy = new ListNode(0);
         ListNode slow = dummy;
         ListNode fast = dummy;
-
-
         // dummy -> 1 -> 2 -> 3 -> 4 -> 5 -> null
         // fast
         // slow
@@ -17,10 +15,10 @@ public class Solution {
         //								     fast
         //                   slow
         dummy.next = head;
-        for(int i = 0; i <= n; i++) {
+        for (int i = 0; i <= n; i++) {
         	fast = fast.next;
         }
-        while(fast != null) {
+        while (fast != null) {
         	fast = fast.next;
         	slow = slow.next;
         }
