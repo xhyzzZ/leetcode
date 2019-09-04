@@ -10,6 +10,7 @@ class Solution {
        	// dp[n] = min number of coins to make amount n;
 		int[] dp = new int[amount + 1];
 		Arrays.fill(dp, amount + 1);
+		// no money no coin
 		dp[0] = 0;
 		for (int j = 0; j < coins.length; j++) {
 			for (int i = coins[j]; i <= amount; i++) {
