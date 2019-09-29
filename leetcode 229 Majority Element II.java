@@ -26,8 +26,8 @@ class Solution {
 				num2 = nums[i];
 				count2 = 1;
 			} else {
-				count1 --;
-				count2 --;
+				count1--;
+				count2--;
 			}
 		}
 		int n = nums.length;
