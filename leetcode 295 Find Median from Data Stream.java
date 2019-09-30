@@ -1,22 +1,23 @@
 //leetcode 295 Find Median from Data Stream
 
 /*
-time: O(logn)
+time: O(nlogn)
 space: O(1)
+I keep two heaps (or priority queues):
+
+Max-heap small has the smaller half of the numbers.
+Min-heap large has the larger half of the numbers.
 */
-
 class MedianFinder {
+    private PriorityQueue<Integer> small;
+    private PriorityQueue<Integer> large;
+    private boolean even;
 
-    private PriorityQueue<Integer> small = new PriorityQueue<>(Collections.reverseOrder());
-    private PriorityQueue<Integer> large = new PriorityQueue<>();
-    private boolean even = true;
-
-    public double findMedian() {
-        if (even) {
-            return (small.peek() + large.peek()) / 2.0;
-        } else {
-            return small.peek();
-        }
+    /** initialize your data structure here. */
+    public MedianFinder() {
+        small = new PriorityQueue<>((a, b) -> (b - a));
+        large = new PriorityQueue<>();
+        even = true;
     }
 
     public void addNum(int num) {
@@ -28,5 +29,13 @@ class MedianFinder {
             large.offer(small.poll());
         }
         even = !even;
+    }
+
+    public double findMedian() {
+        if (even) {
+            return (small.peek() + large.peek()) / 2.0;
+        } else {
+            return small.peek();
+        }
     }
 }
