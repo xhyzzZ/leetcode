@@ -7,11 +7,61 @@ space: O(V + E)
 
 union find
 public class Solution {
+    class UnionFind {
+        private int count = 0;
+        private int[] parent, rank;
+        
+        public UnionFind(int n) {
+            count = n;
+            parent = new int[n];
+            rank = new int[n];
+            for (int i = 0; i < n; i++) {
+                parent[i] = i;
+            }
+        }
+        
+        public int find(int p) {
+            if (parent[p] == p) return p;
+            return find(parent[p]);
+        }
+        
+        public boolean union(int p, int q) {
+            int rootP = find(p);
+            int rootQ = find(q);
+            if (rootP == rootQ) return false;
+            if (rank[rootQ] > rank[rootP]) {
+                parent[rootP] = rootQ;
+            } else if (rank[rootQ] < rank[rootP]) {
+                parent[rootQ] = rootP;
+            } else {
+                parent[rootQ] = rootP;
+                rank[rootP]++;
+            }
+            count--;
+            return true;
+        }
+        
+        public int count() {
+            return count;
+        }
+    }
+
+    public boolean validTree(int n, int[][] edges) {
+        UnionFind uf = new UnionFind(n);
+        for (int[] edge : edges) {
+            int x = edge[0], y = edge[1];
+            if (!uf.union(x, y)) { return false; }  // loop detected
+        }
+        return uf.count == 1;
+    }
+}
+
+public class Solution {
     public boolean validTree(int n, int[][] edges) {
         // initialize n isolated islands
         int[] parent = new int[n];
         for (int i = 0; i < n; i++) {
-            parent[i] = i;
+            parent[i] = -1;
         }
         // perform union find
         for (int[] e : edges) {
@@ -27,11 +77,8 @@ public class Solution {
     }
     
     private int findRoot(int[] parent, int i) {
-        while (i != parent[i]) {
-            parent[i] = parent[parent[i]];
-            i = parent[i];
-        }
-        return i;
+        if (nums[i] == -1) return i;
+        return find(nums, nums[i]);
     }
 }
 
@@ -64,7 +111,7 @@ public class Solution {
             // if v is vertex's parent, continue.
             if (v == parent) continue; 
             // if v is not vertex's parent, and v is visited. that presents there is a cycle in this graph.
-            if(visited.contains(v)) return false;
+            if (visited.contains(v)) return false;
             visited.add(v);
             boolean res = helper(vertex, v, visited, graph);
             if (!res) return false;

@@ -7,6 +7,20 @@ space: O(1)
 */
 
 public class Solution {
+	public TreeNode upsideDownBinaryTree(TreeNode root) {
+		if (root == null || root.left == null) {
+			return root;
+		}
+		TreeNode newRoot = upsideDownBinaryTree(root.left);
+		root.left.left = root.right; // node 2 left children
+		root.left.right = root; // node 2 right children
+		root.left = null;
+		root.right = null;
+		return newRoot;
+	}
+}
+
+public class Solution {
     public TreeNode upsideDownBinaryTree(TreeNode root) {
 	    TreeNode curr = root;
 	    TreeNode temp = null;
@@ -22,20 +36,6 @@ public class Solution {
 			curr = next;
 	    }
 	    return prev;
-		
     }
 }
 
-public class Solution {
-	public TreeNode upsideDownBinaryTree(TreeNode root) {
-		if (root == null || root.left == null) {
-			return root;
-		}
-		TreeNode newRoot = upsideDownBinaryTree(root.left);
-		root.left.left = root.right; // node 2 left children
-		root.left.right = root; // node 2 right children
-		root.left = null;
-		root.right = null;
-		return newRoot;
-	}
-}
