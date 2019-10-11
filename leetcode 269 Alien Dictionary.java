@@ -3,6 +3,9 @@
 /*
 time: O()
 space: O()
+1. dfs建图
+2. 用hashmap统计子节点入度
+3. bfs遍历
 */
 
 class Solution {
@@ -92,6 +95,7 @@ class Solution {
 	        }
 	    }
 	    /* check if input order is valid */
+	    // 如果result和degree里面出现的节点数量相同，说明其中有矛盾的节点出现
 	    if (sb.length() != inDegreeMap.size()) {
 	        return "";
 	    }
