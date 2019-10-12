@@ -1,20 +1,23 @@
 //leetcode 662 Maximum Width of Binary Tree
 
 /*
-time: O()
-space: O()
+time: O(n)
+space: O(h)
 */
 dfs
 class Solution {
     public int widthOfBinaryTree(TreeNode root) {
-        List<Integer> lefts = new ArrayList<Integer>(); // left most nodes at each level;
-        return dfs(root, 1, 0, lefts);
+        // left most nodes at each level;
+        List<Integer> lefts = new ArrayList<Integer>(); 
+        int[] res = new int[1]; // max width
+        dfs(root, 1, 0, lefts, res);
+        return res[0];
     }
-
-    private int dfs(TreeNode n, int id, int d, List<Integer> lefts) { // d : depth
-        if (n == null) return 0;
-        if (d >= lefts.size()) lefts.add(id);   // add left most node
-        return Math.max(id + 1 - lefts.get(d), 
-        	   Math.max(dfs(n.left, id * 2, d + 1, lefts), dfs(n.right, id * 2 + 1, d + 1, lefts)));
+    private void dfs(TreeNode node, int id, int depth, List<Integer> lefts, int[] res) {
+        if (node == null) return;
+        if (depth >= lefts.size()) lefts.add(id);   // add left most node
+        res[0] = Integer.max(res[0], id + 1 - lefts.get(depth));
+        dfs(node.left, id * 2, depth + 1, lefts, res);
+        dfs(node.right, id * 2 + 1, depth + 1, lefts, res);
     }
 }
