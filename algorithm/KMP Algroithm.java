@@ -4,8 +4,14 @@
 // searching algorithm 
 
 class KMP_String_Matching { 
-	void KMPSearch(String pat, String txt) 
-	{ 
+
+	public static void main(String args[]) { 
+		String txt = "ABABDABACDABABCABAB"; 
+		String pat = "ABABCABAB"; 
+		new KMP_String_Matching().KMPSearch(pat, txt); 
+	} 
+
+	public void KMPSearch(String pat, String txt) { 
 		int M = pat.length(); 
 		int N = txt.length(); 
 
@@ -25,13 +31,10 @@ class KMP_String_Matching {
 				i++; 
 			} 
 			if (j == M) { 
-				System.out.println("Found pattern "
-								+ "at index " + (i - j)); 
+				System.out.println("Found pattern " + "at index " + (i - j)); 
 				j = lps[j - 1]; 
-			} 
-
-			// mismatch after j matches 
-			else if (i < N && pat.charAt(j) != txt.charAt(i)) { 
+			} else if (i < N && pat.charAt(j) != txt.charAt(i)) {
+				// mismatch after j matches 
 				// Do not match lps[0..lps[j-1]] characters, 
 				// they will match anyway 
 				if (j != 0) 
@@ -42,9 +45,8 @@ class KMP_String_Matching {
 		} 
 	} 
 
-	void computeLPSArray(String pat, int M, int lps[]) 
-	{ 
-		// length of the previous longest prefix suffix 
+	private void computeLPSArray(String pat, int M, int lps[]) { 
+		// length of the previous longest prefix suffix
 		int len = 0; 
 		int i = 1; 
 		lps[0] = 0; // lps[0] is always 0 
@@ -55,33 +57,21 @@ class KMP_String_Matching {
 				len++; 
 				lps[i] = len; 
 				i++; 
-			} 
-			else // (pat[i] != pat[len]) 
-			{ 
+			} else { 
+				// (pat[i] != pat[len]) 
 				// This is tricky. Consider the example. 
 				// AAACAAAA and i = 7. The idea is similar 
 				// to search step. 
 				if (len != 0) { 
 					len = lps[len - 1]; 
-
 					// Also, note that we do not increment 
 					// i here 
-				} 
-				else // if (len == 0) 
-				{ 
+				} else { 
+					// if (len == 0) 
 					lps[i] = len; 
 					i++; 
 				} 
 			} 
 		} 
-	} 
-
-	// Driver program to test above function 
-	public static void main(String args[]) 
-	{ 
-		String txt = "ABABDABACDABABCABAB"; 
-		String pat = "ABABCABAB"; 
-		new KMP_String_Matching().KMPSearch(pat, txt); 
-	} 
+	}
 } 
-// This code has been contributed by Amit Khandelwal. 
