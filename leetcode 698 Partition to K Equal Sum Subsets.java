@@ -12,19 +12,21 @@ class Solution {
         for (int num : nums) sum += num;
         if (sum % k != 0) return false;
         boolean[] visited = new boolean[nums.length];
-        Arrays.sort(nums);
-        return dfs(nums, 0, nums.length - 1, visited, sum / k, k);
+        return canPartition(nums, 0, 0, visited, sum / k, k);
     }
 
-    public boolean dfs(int[] nums, int sum, int st, boolean[] visited, int target, int round) {
-        if (round == 0) return true;
-        if (sum == target && dfs(nums, 0, nums.length - 1, visited, target, round - 1))
-            return true;
-        for (int i = st; i >= 0; --i) {
-            if (!visited[i] && sum + nums[i] <= target) {
+    public boolean canPartition(int[] nums, int sum, int start, boolean[] visited, int target, int k) {
+        if (k == 1) return true;
+        if (sum == target) {
+            return canPartition(nums, 0, 0, visited, target, k - 1);
+        }
+            
+        for (int i = start; i < nums.length; i++) {
+            if (!visited[i]) {
                 visited[i] = true;
-                if (dfs(nums, sum + nums[i], i - 1, visited, target, round))
+                if (canPartition(nums, sum + nums[i], i + 1, visited, target, k)) {
                     return true;
+                }
                 visited[i] = false;
             }
         }

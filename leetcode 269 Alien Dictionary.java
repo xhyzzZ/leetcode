@@ -1,7 +1,7 @@
 //leetcode 269 Alien Dictionary
 
 /*
-time: O()
+time: O(V + E)
 space: O()
 1. dfs建图
 2. 用hashmap统计子节点入度
