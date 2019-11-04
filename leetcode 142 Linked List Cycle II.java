@@ -2,7 +2,7 @@
 
 
 /*
-time: O()
+time: O(n)
 space: O(1)
 */
 public class Solution {
@@ -10,12 +10,12 @@ public class Solution {
         ListNode slow = head;
         ListNode fast = head;
 
-        while(fast != null && fast.next != null) {
+        while (fast != null && fast.next != null) {
         	fast = fast.next.next;
         	slow = slow.next;
 
-        	if(fast == slow) {
-        		while(head != slow) {
+        	if (fast == slow) {
+        		while (head != slow) {
         			slow = slow.next;
         			head = head.next;
         		}

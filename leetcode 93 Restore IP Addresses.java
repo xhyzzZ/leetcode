@@ -1,26 +1,28 @@
 //leetcode 93 Restore IP Addresses
 
 /*
-time: O(1)
-spcae: O(n)
+time: O(n)
+spcae: O(1)
 */
 public class Solution {
     public List<String> restoreIpAddresses(String s) {
         List<String> res = new ArrayList<>();
-        helper(res, s, 0, "", 0);
+        doRestore(res, "", s, 0);
         return res;
     }
-
-    public void helper(List<String> res, String s, int index, String ret, int count) {
-    	if (count > 4) return;
-    	if (count == 4 && index == s.length()) {
-    		res.add(ret);
-    	}
-    	for (int i = 1; i <= 3; i++) {
-    		if (index + i > s.length()) break;
-    		String temp = s.substring(index, index + 1);
-    		if ((temp.startsWith("0") && temp.length() > 1) || (i == 3 && Integer.parseInt(temp) >= 256)) continue;
-    		helper(res, s, index + i, ret + temp + (count == 3 ? "" : "."), count + 1);
-    	}
+    
+    private void doRestore(List<String> res, String path, String s, int k) {
+        if (s.isEmpty() || k == 4) {
+            if (s.isEmpty() && k == 4)
+                res.add(path.substring(1));
+            return;
+        }
+        // Avoid leading 0
+        for (int i = 1; i <= (s.charAt(0) == '0' ? 1 : 3) && i <= s.length(); i++) { 
+            String part = s.substring(0, i);
+            if (Integer.valueOf(part) <= 255) {
+                doRestore(res, path + "." + part, s.substring(i), k + 1);
+            }
+        }
     }
 }

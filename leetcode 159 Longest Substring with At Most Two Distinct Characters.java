@@ -15,6 +15,7 @@ public class Solution {
             char c1 = s.charAt(end);
             if (map[c1] == 0) counter++;
             map[c1]++;
+            
             end++;
             while (counter > 2) {
                 char c2 = s.charAt(start);

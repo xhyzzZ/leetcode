@@ -7,22 +7,22 @@ space: O(1)
 
 class Solution {
     public int characterReplacement(String s, int k) {
+        int[] map = new int[128];
         int uniqueCount = 0;
-        int start = 0;
-        int max = 0;
-        int[] count = new int[26];
-        for (int end = 0; end < s.length(); end++) {
+        int start = 0, end = 0, maxLen = 0;
+        while (end < s.length()) {
             char c = s.charAt(end);
-            uniqueCount = Math.max(uniqueCount, ++count[c - 'A']);
+            uniqueCount = Math.max(uniqueCount, ++map[c - 'A']);
             int replaceCount = end - start + 1 - uniqueCount;
             if (replaceCount > k) {
                 // invalid window
-                count[s.charAt(start) - 'A']--;
+                map[s.charAt(start) - 'A']--;
                 start++;
             } else {
-                max = Math.max(max, end - start + 1);
+                maxLen = Math.max(maxLen, end - start + 1);
             }
+            end++;
         }
-        return max;
+        return maxLen;
     }
 }
