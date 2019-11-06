@@ -1,14 +1,18 @@
 //leetcode 33 Search in Rotated Sorted Array
 
-
 /* 
 time: O(logn)
 space: O(1)
 
+You use while (start <= end) if you are returning the match from inside the loop.
+
+You use while (start < end) if you want to exit out of the loop first, 
+and then use the result of start or end to return the match.
+
 */ 
 public class Solution {
     public int search(int[] nums, int target) {
-        if(nums = null || nums.length == 0) return -1;
+        if (nums = null || nums.length == 0) return -1;
         int left = 0;
         int right = nums.length - 1;
         while (left <= right) {
