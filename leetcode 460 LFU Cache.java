@@ -5,59 +5,70 @@ time: O(1)
 space: O()
 */
 676
-public class LFUCache {
-    private int min;
-
-    private final int capacity;
-    private final HashMap<Integer, Integer> keyToVal;
-    private final HashMap<Integer, Integer> keyToCount;
-    private final HashMap<Integer, LinkedHashSet<Integer>> countToLRUKeys;
+class LFUCache {
+    HashMap<Integer, Integer> keyToVal;
+    HashMap<Integer, Integer> keyToCount;
+    HashMap<Integer, LinkedHashSet<Integer>> countToLRUKeys;
+    int cap;
+    int min;
     
     public LFUCache(int capacity) {
-        this.min = -1;
-        this.capacity = capacity;
-        this.keyToVal = new HashMap<>();
-        this.keyToCount = new HashMap<>();
-        this.countToLRUKeys = new HashMap<>();
+        keyToVal = new HashMap<>();
+        keyToCount = new HashMap<>();
+        countToLRUKeys = new HashMap<>();
+        cap = capacity;
+        min = 0;
     }
     
     public int get(int key) {
-        if (!keyToVal.containsKey(key)) return -1;
+        if (!keyToVal.containsKey(key))
+            return -1;
         
-        int count = keyToCount.get(key);
-        countToLRUKeys.get(count).remove(key); // remove key from current count (since we will inc count)
-        if (count == min && countToLRUKeys.get(count).size() == 0) min++; // nothing in the current min bucket
-        
-        putCount(key, count + 1);
+        update(key);
         return keyToVal.get(key);
     }
     
+    private void update(int key) {
+        int cnt = keyToCount.get(key);
+        keyToCount.put(key, cnt + 1);
+        countToLRUKeys.get(cnt).remove(key);
+        
+        if (cnt == min && countToLRUKeys.get(cnt).size() == 0)
+            min++;
+        
+        addToList(cnt + 1, key);
+    }
+    
+    private void addToList(int cnt, int key) {
+        if (!countToLRUKeys.containsKey(cnt))
+            countToLRUKeys.put(cnt, new LinkedHashSet<>());
+        
+        countToLRUKeys.get(cnt).add(key);
+    }
+    
+    private void evict() {
+        int key = countToLRUKeys.get(min).iterator().next(); 
+        countToLRUKeys.get(min).remove(key);
+        keyToVal.remove(key);
+        keyToCount.remove(key);
+    }
+    
     public void put(int key, int value) {
-        if (capacity <= 0) return;
+        if (cap <= 0)
+            return;
         
         if (keyToVal.containsKey(key)) {
-            keyToVal.put(key, value); // update key's value
-            get(key); // update key's count
+            keyToVal.put(key, value);
+            update(key);
             return;
         } 
         
-        if (keyToVal.size() >= capacity) {
-            evict(countToLRUKeys.get(min).iterator().next()); // evict LRU from this min count bucket
-        }
+        if (keyToVal.size() >= cap) 
+            evict();
         
+        keyToVal.put(key, value);
+        keyToCount.put(key, 1);
+        addToList(1, key);
         min = 1;
-        putCount(key, min); // adding new key and count
-        keyToVal.put(key, value); // adding new key and value
-    }
-    
-    private void evict(int key) {
-        countToLRUKeys.get(min).remove(key);
-        keyToVal.remove(key);
-    }
-    
-    private void putCount(int key, int count) {
-        keyToCount.put(key, count);
-        countToLRUKeys.computeIfAbsent(count, ignore -> new LinkedHashSet<>());
-        countToLRUKeys.get(count).add(key);
     }
 }

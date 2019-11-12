@@ -15,7 +15,7 @@ class MyStack {
     // Push element x onto stack.
     public void push(int x) {
        queue.add(x);
-       for(int i = 0; i < queue.size() - 1; i++) {
+       for (int i = 0; i < queue.size() - 1; i++) {
            queue.add(queue.poll());
        }
     }

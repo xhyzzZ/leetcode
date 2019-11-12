@@ -6,52 +6,62 @@ space: O()
 */
 
 class MyHashMap {
-	final ListNode[] nodes = new ListNode[10000];
-
-    public void put(int key, int value) {
-        int i = idx(key);
-        if (nodes[i] == null)
-            nodes[i] = new ListNode(-1, -1);
-        ListNode prev = find(nodes[i], key);
-        if (prev.next == null)
-            prev.next = new ListNode(key, value);
-        else prev.next.val = value;
+    class Node{
+        final int key;
+        int value;
+        Node next;
+        public Node(int key, int value) {
+            this.key = key;
+            this.value = value;
+        }
     }
 
+    final int SIZE = 10001;
+    Node[] array;
+    public MyHashMap() {
+         array = new Node[SIZE];
+    }
+
+    public void put(int key, int value) {
+        int index = hash(key); 
+        Node head = array[index];
+        Node node = head;
+        while (node != null) {
+            if (node.key == key) {
+                node.value = value;
+                return;
+            }
+            node = node.next;
+        }
+        Node newNode = new Node(key, value);
+        newNode.next = head;
+        array[index] = newNode;
+    }
+
+
     public int get(int key) {
-        int i = idx(key);
-        if (nodes[i] == null)
-            return -1;
-        ListNode node = find(nodes[i], key);
-        return node.next == null ? -1 : node.next.val;
+        int index = hash(key);
+        Node node = array[index];
+        while (node != null) {
+            if (node.key == key) return node.value;
+            node = node.next;
+        }
+        return -1;
     }
 
     public void remove(int key) {
-        int i = idx(key);
-        if (nodes[i] == null) return;
-        ListNode prev = find(nodes[i], key);
-        if (prev.next == null) return;
-        prev.next = prev.next.next;
-    }
-
-    int idx(int key) { return Integer.hashCode(key) % nodes.length;}
-
-    ListNode find(ListNode bucket, int key) {
-        ListNode node = bucket, prev = null;
-        while (node != null && node.key != key) {
-            prev = node;
+        int index = hash(key);
+        Node node = array[index];
+        while (node != null) {
+            if (node.key == key) {
+                node.value = -1;
+                return;
+            }
             node = node.next;
         }
-        return prev;
     }
 
-    class ListNode {
-        int key, val;
-        ListNode next;
-
-        ListNode(int key, int val) {
-            this.key = key;
-            this.val = val;
-        }
+    private int hash(int key) {
+        return Integer.hashCode(key) % SIZE;
     }
 }

@@ -1,7 +1,7 @@
 //leetcode 322 Coin Change
 
 /*
-time: O()
+time: O(n * amount)
 space: O(n)
 */
 
@@ -12,9 +12,9 @@ class Solution {
 		Arrays.fill(dp, amount + 1);
 		// no money no coin
 		dp[0] = 0;
-		for (int j = 0; j < coins.length; j++) {
-			for (int i = coins[j]; i <= amount; i++) {
-				dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1);
+		for (int coin : coins) {
+			for (int i = coin; i <= amount; i++) {
+				dp[i] = Math.min(dp[i], dp[i - coin] + 1);
 			}
 		}
 		return dp[amount] == amount + 1 ? -1 : dp[amount];
