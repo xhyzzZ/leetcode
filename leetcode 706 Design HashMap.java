@@ -5,8 +5,15 @@ time: O()
 space: O()
 */
 
-class MyHashMap {
-    class Node{
+/*
+原理是需要用array来实现random access，保证平均情况下hashmap的put和get是O（1）的，如果出现了collision，
+那么可以选择使用linkedlist来处理collision的情况，所以在put get 和remove的时候，需要一个while loop
+来查找所有collision的元素，导致worst case是O（n）因此我在这里把listnode改变了一下结构，使其能够同时存储key和value，
+便于查找，同时需要保证key是final无法被改变。
+*/
+
+public class MyHashMap {
+    class Node {
         final int key;
         int value;
         Node next;
@@ -15,7 +22,7 @@ class MyHashMap {
             this.value = value;
         }
     }
-
+    
     final int SIZE = 10001;
     Node[] array;
     public MyHashMap() {
@@ -59,6 +66,7 @@ class MyHashMap {
             }
             node = node.next;
         }
+
     }
 
     private int hash(int key) {
