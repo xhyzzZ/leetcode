@@ -10,7 +10,7 @@ class Solution {
         if (root == null) {
 			return 0;
 		}
-    	return DFS(root, root.val + 1, 1, 1);
+    	return dfs(root, root.val + 1, 1, 1);
 	}
 
 	private int dfs(TreeNode node, int target, int curr, int max) {

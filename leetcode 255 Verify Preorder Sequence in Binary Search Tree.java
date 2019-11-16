@@ -9,7 +9,7 @@ space: O(1)
 class Solution {
 	public boolean verifyPreorder(int[] preorder) {
 	    int low = Integer.MIN_VALUE;
-	    Stack<Integer> path = new Stack();
+	    Stack<Integer> path = new Stack<>();
 	    for (int p : preorder) {
 	        if (p < low) {
 	            return false;

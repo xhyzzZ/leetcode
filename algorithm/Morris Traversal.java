@@ -26,7 +26,7 @@ public class Solution {
 				} else {
 					prev.right = null;
 					// Uncomment for in-order
-					// list.add(cur.val);
+					list.add(cur.val);
 					cur = cur.right;
 				}
 			}
