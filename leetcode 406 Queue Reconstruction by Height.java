@@ -19,9 +19,9 @@ class Solution {
         });
         
         int n = people.length;
-        ArrayList<int[]> tmp = new ArrayList<>();
+        List<int[]> tmp = new ArrayList<>();
         for (int i = 0; i < n; i++)
-            tmp.add(people[i][1], new int[]{people[i][0], people[i][1]});
+            tmp.add(people[i][1], new int[] {people[i][0], people[i][1]});
 
         int[][] res = new int[people.length][2];
         int i = 0;

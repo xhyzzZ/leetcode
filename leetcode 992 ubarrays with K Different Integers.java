@@ -20,7 +20,7 @@ class Solution {
             if (counter.getOrDefault(A[j], 0) == 0) {
                 distinct++;
             }
-            counter.put(A[j], 1 + counter.getOrDefault(A[j], 0));
+            counter.put(A[j], counter.getOrDefault(A[j], 0) + 1);
             j++;
             while (i < j && distinct > K) {  // shrink the left boundary of window.
                 counter.put(A[i], counter.get(A[i]) - 1);
