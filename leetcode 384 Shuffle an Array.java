@@ -25,6 +25,7 @@ class Solution {
         if (nums == null) return null;
         int[] copy = nums.clone();
         for (int j = 1; j < copy.length; j++) {
+            // nextInt(j + 1) returns a random num between [0, j]
             int i = random.nextInt(j + 1);
             swap(copy, i, j);
         }

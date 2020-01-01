@@ -9,17 +9,17 @@ class Solution {
     public List<int[]> getSkyline(int[][] buildings) {
         List<int[]> result = new ArrayList<>();
         List<int[]> height = new ArrayList<>();
-        for(int[] b : buildings) {
+        for (int[] b : buildings) {
             // start point has negative height value
-            height.add(new int[]{b[0], -b[2]});
+            height.add(new int[] {b[0], -b[2]});
             // end point has normal height value
-            height.add(new int[]{b[1], b[2]}); 
+            height.add(new int[] {b[1], b[2]}); 
         }
 
         // sort $height, based on the first value, if necessary, use the second to
         // break ties
         Collections.sort(height, (a, b) -> {
-                if(a[0] != b[0]) {
+                if (a[0] != b[0]) {
                     return a[0] - b[0];
                 }  
                 return a[1] - b[1];
@@ -32,8 +32,8 @@ class Solution {
         // Before starting, the previous max height is 0;
         int prev = 0;
         // visit all points in order
-        for(int[] h : height) {
-            if(h[1] < 0) { // a start point, add height
+        for (int[] h : height) {
+            if (h[1] < 0) { // a start point, add height
                 pq.offer(-h[1]);
             } else {  // a end point, remove height
                 pq.remove(h[1]);
@@ -41,8 +41,8 @@ class Solution {
             int cur = pq.peek(); // current max height;
             // compare current max height with previous max height, update result and 
             // previous max height if necessary
-            if(prev != cur) {
-                result.add(new int[]{h[0], cur});
+            if (prev != cur) {
+                result.add(new int[] {h[0], cur});
                 prev = cur;
             }
         }
