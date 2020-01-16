@@ -7,8 +7,8 @@ space: O(logN)
 
 class Solution {
     public List<List<Integer>> getFactors(int n) {
-        List<List<Integer>> result = new ArrayList<List<Integer>>();
-	    helper(result, new ArrayList<Integer>(), n, 2);
+        List<List<Integer>> result = new ArrayList<>();
+	    helper(result, new ArrayList<>(), n, 2);
 	    return result;
 	}
 

@@ -1,8 +1,8 @@
 // leetcode 149 Max Points on a Line
 
 /*
-time: O()
-space: O()
+time: O(n^2)
+space: O(n)
 */
 
 public class Solution {

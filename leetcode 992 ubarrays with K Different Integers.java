@@ -13,24 +13,24 @@ class Solution {
     // all subarrays with <= K distinct numbers are counted.
     private int atMostK(int[] A, int K) {
         int i = 0, j = 0;
-        int total = 0;
-        int distinct = 0;   // count of distinct numbers in the window.
-        Map<Integer, Integer> counter = new HashMap<>();
+        int sum = 0;
+        int counter = 0;   // count of distinct numbers in the window.
+        Map<Integer, Integer> map = new HashMap<>();
         while (j < A.length) {
-            if (counter.getOrDefault(A[j], 0) == 0) {
-                distinct++;
+            if (map.getOrDefault(A[j], 0) == 0) {
+                counter++;
             }
-            counter.put(A[j], counter.getOrDefault(A[j], 0) + 1);
+            map.put(A[j], map.getOrDefault(A[j], 0) + 1);
             j++;
-            while (i < j && distinct > K) {  // shrink the left boundary of window.
-                counter.put(A[i], counter.get(A[i]) - 1);
-                if (counter.get(A[i]) == 0) {
-                    distinct--;
+            while (i < j && counter > K) {  // shrink the left boundary of window.
+                map.put(A[i], map.get(A[i]) - 1);
+                if (map.get(A[i]) == 0) {
+                    counter--;
                 }
                 i++;
             }
-            total += j - i;  
+            sum += j - i;  
         }
-        return total;
+        return sum;
     }
 }

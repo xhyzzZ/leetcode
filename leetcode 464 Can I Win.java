@@ -1,4 +1,4 @@
-//leetcode 464 Can I Win
+// leetcode 464 Can I Win
 
 /*
 time: O()

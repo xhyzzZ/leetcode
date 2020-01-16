@@ -3,42 +3,64 @@
 /*
 time: O(n)
 space: O(n)
-Travese all the nodes of the tree. 
-The diameter of the tree is maximum of the longest path through each node.
-Longest path through a node is sum of top 2 depths of children's tree.
+First BFS to find an end point of the longest path and second BFS 
+from this end point to find the actual longest path.
 */
 
 class Solution {
-    int diameter = 0;
+    class Node {
+        int value;
+        int distance;
+
+        Node(int node, int distance) {
+            this.value = node;
+            this.distance = distance;
+        }
+    }
 
     public int treeDiameter(int[][] edges) {
         int n = edges.length + 1;
+
         LinkedList<Integer>[] adj = new LinkedList[n];
-        for (int i = 0; i < n; i++) adj[i] = new LinkedList<>();
+        for (int i = 0; i < n; i++) {
+            adj[i] = new LinkedList<>();
+        }
+
         for (int[] edge : edges) {
             adj[edge[0]].add(edge[1]);
             adj[edge[1]].add(edge[0]);
         }
-        diameter = 0;
-        depth(0, -1, adj);
-        return diameter;
+
+        Node start = bfs(0, n, adj);
+        return bfs(start.value, n, adj).distance;
+
     }
 
-    private int depth(int root, int parent, LinkedList<Integer>[] adj) {
-        int maxDepth1st = 0, maxDepth2nd = 0;
-        for (int child : adj[root]) {
-            if (child != parent) { // Only one way from root node to child node, don't allow child node go to root node again!
-                int childDepth = depth(child, root, adj);
-                if (childDepth > maxDepth1st) {
-                    maxDepth2nd = maxDepth1st;
-                    maxDepth1st = childDepth;
-                } else if (childDepth > maxDepth2nd) {
-                    maxDepth2nd = childDepth;
+    private Node bfs(int u, int n, LinkedList<Integer>[] adj) {
+        int[] distance = new int[n];
+        Arrays.fill(distance, -1);
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(u);
+        distance[u] = 0;
+        while (!queue.isEmpty()) {
+            int poll = queue.poll();
+            for (int i = 0; i < adj[poll].size(); i++) {
+                int v = adj[poll].get(i);
+                if (distance[v] == -1) {
+                    queue.add(v);
+                    distance[v] = distance[poll] + 1;
                 }
             }
         }
-        int longestPathThroughRoot = maxDepth1st + maxDepth2nd; // Sum of the top 2 highest depths is the longest path through this root
-        diameter = Math.max(diameter, longestPathThroughRoot);
-        return maxDepth1st + 1;
+
+        int maxDistance = 0;
+        int val = 0;
+        for (int i = 0; i < n; i++) {
+            if (distance[i] > maxDistance) {
+                maxDistance = distance[i];
+                val = i;
+            }
+        }
+        return new Node(val, maxDistance);
     }
 }

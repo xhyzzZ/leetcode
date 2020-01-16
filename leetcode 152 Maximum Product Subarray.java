@@ -1,5 +1,10 @@
 //leetcode 152 Maximum Product Subarray
 
+/*
+time: O(n)
+space: O(1)
+*/
+
 public class Solution {
 	public int maxProduct(int[] A) {
 		if (A == null || A.length == 0) {

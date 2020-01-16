@@ -1,14 +1,14 @@
 //leetcode 364 Nested List Weight Sum II
 
 /*
-time: O()
+time: O(n)
 space: O()
 */
 
 class Solution {
     public int depthSumInverse(List<NestedInteger> nestedList) {
         int prevSum = 0, totalSum = 0;
-        Deque<NestedInteger> queue = new ArrayDeque();
+        Deque<NestedInteger> queue = new ArrayDeque<>();
         for (NestedInteger ni : nestedList) {
             queue.offerLast(ni);
         }
