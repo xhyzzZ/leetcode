@@ -3,10 +3,10 @@
 /*
 time: O(n)
 space: O(1)
-
 /*
 如果第i个房子要涂成红色，那么他的值由第i - 1的房子（绿色和蓝色选最小的）加上这层红色的值
- */ 
+paintCurrentRed = min(paintPreviousGreen,paintPreviousBlue) + costs[i+1][0]
+*/ 
 
 class Solution {
     public int minCost(int[][] costs) {

@@ -1,42 +1,35 @@
 // leetcode 352 Data Stream as Disjoint Intervals
 
 /*
-time: O()
+time: O(logn)
 space: O()
 */
 
 class SummaryRanges {
-	//map val to containing interval left bound
-    private Map<Integer, Integer> valueToBond;
-    // store intervals in TreeMap <left bound, interval>
-    private Map<Integer, Interval> bondToInterval; 
-    
+	TreeMap<Integer, Interval> tree;
+
     public SummaryRanges() {
-        valueToBond = new HashMap<>();
-        bondToInterval = new TreeMap<>();
+        tree = new TreeMap<>();
     }
-    
+
     public void addNum(int val) {
-        //contained in an existing interval
-        if (valueToBond.containsKey(val)) {
-            return;
+        if (tree.containsKey(val)) return;
+        Integer l = tree.lowerKey(val);
+        Integer h = tree.higherKey(val);
+        if (l != null && h != null && tree.get(l).end + 1 == val && h == val + 1) {
+            tree.get(l).end = tree.get(h).end;
+            tree.remove(h);
+        } else if (l != null && tree.get(l).end + 1 >= val) {
+            tree.get(l).end = Math.max(tree.get(l).end, val);
+        } else if (h != null && h == val + 1) {
+            tree.put(val, new Interval(val, tree.get(h).end));
+            tree.remove(h);
+        } else {
+            tree.put(val, new Interval(val, val));
         }
-        //isolated number, no connection to its left or right
-        if (!valueToBond.containsKey(val - 1) && !valueToBond.containsKey(val + 1)) {
-            valueToBond.put(val, val);
-            bondToInterval.put(val, new Interval(val, val));
-            return;
-        }
-        //may connect to left, right or both
-        int left = valueToBond.containsKey(val - 1) ? valueToBond.get(val - 1) : val;
-        int right = valueToBond.containsKey(val + 1) ? bondToInterval.get(valueToBond.get(val + 1)).end : val;
-        valueToBond.put(val, left);
-        valueToBond.put(right, left);
-        bondToInterval.remove(val + 1);
-        bondToInterval.put(left, new Interval(left, right));
     }
-    
+
     public List<Interval> getIntervals() {
-        return new ArrayList<>(bondToInterval.values());
+        return new ArrayList<>(tree.values());
     }
 }
