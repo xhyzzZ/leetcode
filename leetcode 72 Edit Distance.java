@@ -1,6 +1,5 @@
 //leetcode 72 Edit Distance
 
-
 /*
 time: O(m * n)
 space: O(m * n)
@@ -12,9 +11,8 @@ dp[i][j]表示的是，从字符串1的i的位置转换到字符串2的j的位�
 	insert: dp[i][j - 1] + 1
 	replace: dp[i][j] = dp[i - 1][j - 1] + 1
 	delete: dp[i][j] = dp[i - 1][j] + 1
-
-
 */
+    
 public class Solution {
     public int minDistance(String word1, String word2) {
         int len1 = word1.length();
