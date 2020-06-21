@@ -1,0 +1,16 @@
+// leetcode 1486 XOR Operation in an Array
+
+/*
+time: O(n)
+space: O(1)
+*/
+
+class Solution {
+    public int xorOperation(int n, int start) {
+        int res = start;
+        for (int i = 1; i< n; i++) {
+            res = res ^ (start + 2 * i);
+        }
+        return res;
+    }
+}
