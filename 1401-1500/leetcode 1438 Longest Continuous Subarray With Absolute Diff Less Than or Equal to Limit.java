@@ -12,13 +12,13 @@ class Solution {
         set.add(0);
         while (end < nums.length) {
             set.add(end);
-            end++;
             while (nums[set.last()] - nums[set.first()] > limit) {
                 set.remove(start);
                 start++;
             }
             
-            maxLen = Math.max(maxLen, end - start);
+            maxLen = Math.max(maxLen, end - start + 1);
+            end++;
         }
         return maxLen;
     }

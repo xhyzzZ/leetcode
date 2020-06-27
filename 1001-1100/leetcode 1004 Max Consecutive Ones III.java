@@ -19,12 +19,13 @@ class Solution {
         int end = 0, start = 0, counter = 0, res = 0;
         while (end < A.length) {
             if (A[end] == 0) counter++;
-            end++;
+            
             while (counter > K) {
                 if (A[start] == 0) counter--;
                 start++;
             }
-            res = Math.max(res, end - start);
+            res = Math.max(res, end - start + 1);
+            end++;
         }
         return res;
     }

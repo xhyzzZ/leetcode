@@ -12,7 +12,7 @@ class Solution {
             char c = s.charAt(end);
             if (check(c)) count++;
             counter++;
-            end++;
+            
             while (counter > k) {
                 counter--;
                 if (check(s.charAt(start))) count--;
@@ -20,6 +20,7 @@ class Solution {
             }
             
             max = Math.max(max, count);
+            end++;
         }
         return max;
     }

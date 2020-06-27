@@ -15,7 +15,8 @@ class Solution {
             cur += cardPoints[end];
             if (end - start + 1 == len - k) {
                 min = Math.min(min, cur);
-                cur -= cardPoints[start++];
+                cur -= cardPoints[start];
+                start++
             }
             end++;
         }

@@ -7,15 +7,15 @@ space: O(1)
 
 class Solution {
     public int equalSubstring(String s, String t, int maxCost) {
-        int left = 0, right = 0, n = s.length(), cost = 0, res = 0;
-        while (right < n) {
-            cost += Math.abs(s.charAt(right) - t.charAt(right));
+        int start = 0, end = 0, n = s.length(), cost = 0, res = 0;
+        while (end < n) {
+            cost += Math.abs(s.charAt(end) - t.charAt(end));
             while (cost > maxCost) {
-                cost -= Math.abs(s.charAt(left) - t.charAt(left));
-                left++;
+                cost -= Math.abs(s.charAt(start) - t.charAt(start));
+                start++;
             }
-            res = Math.max(res, right - left + 1);
-            right++;
+            res = Math.max(res, end - start + 1);
+            end++;
         }
         return res;
     }
