@@ -1,4 +1,4 @@
-//leetcode 1011 Capacity To Ship Packages Within D Days
+// leetcode 1011 Capacity To Ship Packages Within D Days
 
 /*
 time: O(n)
@@ -6,7 +6,7 @@ space: O(1)
 */
 
 class Solution {
-    public int shipWithinDays(int[] weights, int D) {
+    public int shipWithinDays(int[] weights, int days) {
         int left = 0, right = 0;
         for (int weight : weights) {
         	left = Math.max(left, weight);
@@ -22,7 +22,7 @@ class Solution {
         		}
         		cur += weight;
         	} 
-        	if (need > D) left = mid + 1;
+        	if (need > days) left = mid + 1;
         	else right = mid;
         }
         return left;
