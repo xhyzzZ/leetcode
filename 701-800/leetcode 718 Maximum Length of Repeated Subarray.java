@@ -1,8 +1,8 @@
-//leetcode 718 Maximum Length of Repeated Subarray
+// leetcode 718 Maximum Length of Repeated Subarray
 
 /*
-time: O(n)
-space: O(n)
+time: O(mn)
+space: O(mn)
 */
 
 class Solution {

@@ -1,8 +1,8 @@
 //leetcode 261 Graph Valid Tree
 
 /*
-time: O(V + E)
-space: O(V + E)
+time: O(N ⋅ α(N))
+space: O(N)
 */
 
 union find
@@ -81,6 +81,12 @@ public class Solution {
         return find(nums, nums[i]);
     }
 }
+
+
+/*
+time: O(V + E)
+space: O(V + E)
+*/
 
 dfs
 public class Solution {
