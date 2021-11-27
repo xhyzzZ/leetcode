@@ -1,7 +1,7 @@
-//leetcode 232 Implement Queue using Stacks
+// leetcode 232 Implement Queue using Stacks
 
 /*
-time: O()
+time: O(1) amortized
 space: O()
 */
 

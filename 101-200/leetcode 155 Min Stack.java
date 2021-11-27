@@ -1,4 +1,9 @@
-//leetcode 155 Min Stack
+// leetcode 155 Min Stack
+
+/*
+time: all O(1)
+space: all O(n)
+*/
 
 class MinStack {
     Stack<Integer> min = new Stack<>();
