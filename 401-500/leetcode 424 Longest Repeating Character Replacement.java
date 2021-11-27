@@ -11,12 +11,14 @@ class Solution {
         int uniqueCount = 0;
         int start = 0, end = 0, maxLen = 0;
         while (end < s.length()) {
-            char c = s.charAt(end);
-            uniqueCount = Math.max(uniqueCount, ++map[c - 'A']);
+            char c1 = s.charAt(end);
+            map[c1]++;
+            uniqueCount = Math.max(uniqueCount, map[c1]);
             int replaceCount = end - start + 1 - uniqueCount;
             if (replaceCount > k) {
                 // invalid window
-                map[s.charAt(start) - 'A']--;
+                char c2 = s.charAt(start);
+                map[c2]--;
                 start++;
             } else {
                 maxLen = Math.max(maxLen, end - start + 1);
