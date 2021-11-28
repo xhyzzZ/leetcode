@@ -1,27 +1,44 @@
-//leetcode 86 Partition List
+// leetcode 86 Partition List
 
 /*
 time: O(n)
-space: O(n)
+space: O(1)
 */
-public class Solution {
+
+class Solution {
     public ListNode partition(ListNode head, int x) {
-        ListNode smallhead = new ListNode(0);
-        ListNode bighead = new ListNode(0);
-        ListNode small = smallhead;
-        ListNode big = bighead;
-        while(head != null) {
-        	ListNode temp = new ListNode(head.val);
-        	if(head.val < x) {
-        		small.next = temp;
-        		small = small.next;
-        	} else {
-        		big.next = temp;
-        		big = big.next;
-        	}
-        	head = head.next;
+
+        // before and after are the two pointers used to create the two list
+        // before_head and after_head are used to save the heads of the two lists.
+        // All of these are initialized with the dummy nodes created.
+        ListNode before_head = new ListNode(0);
+        ListNode before = before_head;
+        ListNode after_head = new ListNode(0);
+        ListNode after = after_head;
+
+        while (head != null) {
+
+            // If the original list node is lesser than the given x,
+            // assign it to the before list.
+            if (head.val < x) {
+                before.next = head;
+                before = before.next;
+            } else {
+                // If the original list node is greater or equal to the given x,
+                // assign it to the after list.
+                after.next = head;
+                after = after.next;
+            }
+            head = head.next;
         }
-        small.next = bighead.next;
-        return smallhead.next;
+
+        // Last node of "after" list would also be ending node of the reformed list
+        after.next = null;
+
+        // Once all the nodes are correctly assigned to the two lists,
+        // combine them to form a single list which would be returned.
+        before.next = after_head.next;
+
+        return before_head.next;
     }
 }

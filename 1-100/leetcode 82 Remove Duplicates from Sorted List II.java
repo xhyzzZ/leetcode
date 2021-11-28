@@ -1,28 +1,32 @@
-//leetcode 82 Remove Duplicates from Sorted List II
+// leetcode 82 Remove Duplicates from Sorted List II
 
 /*
 time: O(n)
 space: O(1)
 */
-public class Solution {
+
+class Solution {
     public ListNode deleteDuplicates(ListNode head) {
-        //use two pointers, slow - track the node before the dup nodes, 
-		// fast - to find the last node of dups.
-	    ListNode dummy = new ListNode(0), fast = head, slow = dummy;
-	    slow.next = fast;
-	    while (fast != null) {
-	    	while (fast.next != null && fast.val == fast.next.val) {
-	     		fast = fast.next;    //while loop to find the last node of the dups.
-	    	}
-	    	if (slow.next != fast) { //duplicates detected.
-	    		slow.next = fast.next; //remove the dups.
-	    		fast = slow.next;     //reposition the fast pointer.
-	    	} else { //no dup, move down both pointer.
-	    		slow = slow.next;
-	    		fast = fast.next;
-	    	}
-	    	
-	    }
-	    return dummy.next;
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode prev = dummy;
+        
+        while (head != null) {
+            // if it's a beginning of duplicates sublist 
+            // skip all duplicates
+            if (head.next != null && head.val == head.next.val) {
+                // move till the end of duplicates sublist
+                while (head.next != null && head.val == head.next.val) {
+                    head = head.next;    
+                }
+                // skip all duplicates
+                prev.next = head.next;     
+            // otherwise, move predecessor
+            } else {
+                prev = prev.next;    
+            }
+            head = head.next;    
+        }  
+        return dummy.next;
     }
 }

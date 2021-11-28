@@ -1,10 +1,10 @@
-//leetcode 142 Linked List Cycle II
-
+// leetcode 142 Linked List Cycle II
 
 /*
 time: O(n)
 space: O(1)
 */
+
 public class Solution {
     public ListNode detectCycle(ListNode head) {
         ListNode slow = head;

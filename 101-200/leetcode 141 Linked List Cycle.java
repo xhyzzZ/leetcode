@@ -1,12 +1,13 @@
-//leetcode 141 Linked List Cycle
+// leetcode 141 Linked List Cycle
 
 /*
 time: O(n)
 space: O(1)
 */
+
 public class Solution {
     public boolean hasCycle(ListNode head) {
-        if(head == null) return false;
+        if (head == null) return false;
         ListNode slow = head;
         ListNode fast = head;
         while (fast != null && fast.next != null) {
