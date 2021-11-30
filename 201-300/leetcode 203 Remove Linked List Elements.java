@@ -1,4 +1,4 @@
-//leetcode 203 Remove Linked List Elements
+// leetcode 203 Remove Linked List Elements
 
 /*
 time: O(n)

@@ -1,10 +1,11 @@
 // leetcode 684 Redundant Connection
 
 /*
-time: O()
-space: O()
+time: O(Nα(N)) -> O(N)
+space: O(N)
 */
 
+union find
 class Solution {
     class UnionFind {
         private int count = 0;

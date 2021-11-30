@@ -1,9 +1,8 @@
-//leetcode 234 Palindrome Linked List
+// leetcode 234 Palindrome Linked List
 
 /*
 time: O(n)
 space: O(1)
-
 */
 
 class Solution {

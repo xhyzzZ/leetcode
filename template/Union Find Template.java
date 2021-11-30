@@ -27,7 +27,7 @@ class UnionFind {
         return find(parent[p]);
     }
     
-    // path compression
+    // path compression and union by rank to optimize
     public boolean union(int p, int q) {
         int rootP = find(p);
         int rootQ = find(q);

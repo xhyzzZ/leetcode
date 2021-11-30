@@ -1,4 +1,4 @@
-//leetcode 876 Middle of the Linked List
+// leetcode 876 Middle of the Linked List
 
 /*
 time: O(n)

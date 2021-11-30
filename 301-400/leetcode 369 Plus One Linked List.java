@@ -1,4 +1,4 @@
-//leetcode 369 Plus One Linked List
+// leetcode 369 Plus One Linked List
 
 /*
 time: O(n)
