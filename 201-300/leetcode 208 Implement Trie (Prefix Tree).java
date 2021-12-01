@@ -1,4 +1,4 @@
-//leetcode 208 Implement Trie (Prefix Tree)
+// leetcode 208 Implement Trie (Prefix Tree)
 
 /*
 time: O(l)

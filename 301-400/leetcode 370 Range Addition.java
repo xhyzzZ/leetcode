@@ -1,4 +1,4 @@
-//leetcode 370 Range Addition
+// leetcode 370 Range Addition
 
 /*
 time: O(n + k)
@@ -15,7 +15,7 @@ class Solution {
 			int val = update[2];
 
 			res[start] += val;
-			if(end + 1 < length) res[end + 1] -= val;
+			if (end + 1 < length) res[end + 1] -= val;
 		}
 
 		int carry = 0;
