@@ -1,8 +1,8 @@
-//leetcode 341 Flatten Nested List Iterator
+// leetcode 341 Flatten Nested List Iterator
 
 /*
 time: O()
-space: O()
+space: O(N + L)
 */
 
 /**
@@ -24,6 +24,7 @@ space: O()
  */
 public class NestedIterator implements Iterator<Integer> {
     private Stack<NestedInteger> stack;
+    // Constructor: O(N + L)
     public NestedIterator(List<NestedInteger> nestedList) {
         stack = new Stack<>();
         for (int i = nestedList.size() - 1; i >= 0; i--) {
@@ -49,9 +50,3 @@ public class NestedIterator implements Iterator<Integer> {
         return false;
     }
 }
-
-/**
- * Your NestedIterator object will be instantiated and called as such:
- * NestedIterator i = new NestedIterator(nestedList);
- * while (i.hasNext()) v[f()] = i.next();
- */

@@ -1,4 +1,4 @@
-//leetcode 359 Logger Rate Limiter
+// leetcode 359 Logger Rate Limiter
 
 /*
 time: O(n)
