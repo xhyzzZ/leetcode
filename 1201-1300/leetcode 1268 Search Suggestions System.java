@@ -1,8 +1,8 @@
 // leetcode 1268 Search Suggestions System
 
-/*
-time: O()
-space: O()
+/* 
+time: O(m) to build the trie where M is total number of characters in products
+space: O(26n)
 */
 
 class Solution {

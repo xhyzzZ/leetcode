@@ -1,4 +1,4 @@
-//leetcode 792 Number of Matching Subsequences
+// leetcode 792 Number of Matching Subsequences
 
 /*
 time: O()
