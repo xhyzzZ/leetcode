@@ -1,7 +1,9 @@
-//leetcode 12 Integer to Roman
+// leetcode 12 Integer to Roman
 
-//time: O(n)
-//space: O(n)
+/*
+time: O(n)
+space: O(n)
+*/
 
 public class Solution {
     public String intToRoman(int num) {
