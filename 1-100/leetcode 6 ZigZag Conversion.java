@@ -1,22 +1,25 @@
-//leetcode 6 ZigZag Conversion
+// leetcode 6 ZigZag Conversion
 
-//O(n)
-//space: O(n)
-public class Solution {
-	public String convert(String s, int numRows) {
-		if(numRows <= 1) return s;
-        StringBuilder[] sb = new StringBuilder[numRows];
-        for(int i = 0; i < sb.length; i++) {
-            sb[i] = new StringBuilder("");
+/*
+time: O(n)
+space: O(n)
+*/
+
+class Solution {
+    public String convert(String s, int numRows) {
+        if (numRows == 1) return s;
+
+        StringBuilder sb = new StringBuilder();
+        int n = s.length();
+        int cycleLen = 2 * numRows - 2;
+
+        for (int i = 0; i < numRows; i++) {
+            for (int j = 0; j + i < n; j += cycleLen) {
+                sb.append(s.charAt(j + i));
+                if (i != 0 && i != numRows - 1 && j + cycleLen - i < n)
+                    sb.append(s.charAt(j + cycleLen - i));
+            }
         }
-        for(int i = 0; i < s.length(); i++) {
-            int index = i % (2 * numRows - 2);
-            index = index < numRows ? index : 2 * numRows - 2 - index;
-            sb[index].append(s.chatAt(i));    
-        }
-        for(int i = 1; i < sb.length; i++) {
-            sb[0].append(sb[i]);
-        }
-        return sb[0].toString();
-	}
+        return sb.toString();
+    }
 }

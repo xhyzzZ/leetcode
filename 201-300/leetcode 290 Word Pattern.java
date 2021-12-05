@@ -1,4 +1,4 @@
-//leetcode 290 Word Pattern
+// leetcode 290 Word Pattern
 
 /*
 time: O(n)

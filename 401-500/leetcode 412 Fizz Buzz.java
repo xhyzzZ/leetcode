@@ -1,4 +1,4 @@
-//leetcode 412 Fizz Buzz
+// leetcode 412 Fizz Buzz
 
 /*
 time: O(n)
@@ -7,24 +7,24 @@ space: O(1)
 
 class Solution {
     public List<String> fizzBuzz(int n) {
-        List<String> ret = new ArrayList<String>(n);
-        for(int i = 1, fizz = 0, buzz = 0; i <= n; i++) {
+        List<String> res = new ArrayList<String>(n);
+        for (int i = 1, fizz = 0, buzz = 0; i <= n; i++) {
             fizz++;
             buzz++; 
-            if(fizz == 3 && buzz == 5) {
-                ret.add("FizzBuzz");
+            if (fizz == 3 && buzz == 5) {
+                res.add("FizzBuzz");
                 fizz = 0;
                 buzz = 0;
-            } else if(fizz == 3) {
-                ret.add("Fizz");
+            } else if (fizz == 3) {
+                res.add("Fizz");
                 fizz = 0;
-            } else if(buzz == 5) {
-                ret.add("Buzz");
+            } else if (buzz == 5) {
+                res.add("Buzz");
                 buzz = 0;
             } else {
-                ret.add(String.valueOf(i));
+                res.add(String.valueOf(i));
             }
         } 
-        return ret;
+        return res;
     }
 }

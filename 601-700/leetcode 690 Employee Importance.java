@@ -1,8 +1,8 @@
-//leetcode 690 Employee Importance
+// leetcode 690 Employee Importance
 
 /*
-time: O()
-space: O()
+time: O(n)
+space: O(n)
 */
 
 /*
@@ -17,6 +17,7 @@ class Employee {
     public List<Integer> subordinates;
 };
 */
+
 bfs
 class Solution {
     public int getImportance(List<Employee> employees, int id) {
@@ -38,7 +39,10 @@ class Solution {
     }
 }
 
-
+/*
+time: O(n)
+space: O(n)
+*/
 
 dfs
 class Solution {

@@ -1,4 +1,4 @@
-//leetcode 697 Degree of an Array
+// leetcode 697 Degree of an Array
 
 /*
 time: O(n)

@@ -1,15 +1,15 @@
-//leetcode 616 Add Bold Tag in String
+// leetcode 616 Add Bold Tag in String
 
 /*
-time: O()
-space: O()
+time: N is the length of s, M is the length of dict, L is the average length of each word in dict. The time complexity is O(NML)
+space: O(N)
 */
 
 class Solution {
-    public String addBoldTag(String s, String[] dict) {
+    public String addBoldTag(String s, String[] words) {
         boolean[] bold = new boolean[s.length()];
         for (int i = 0, end = 0; i < s.length(); i++) {
-        	for (String word : dict) {
+        	for (String word : words) {
         		if (s.startsWith(word, i)) {
         			end = Math.max(end, i + word.length());
         		}

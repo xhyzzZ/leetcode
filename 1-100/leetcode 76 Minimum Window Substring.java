@@ -1,5 +1,4 @@
-//leetcode 76 Minimum Window Substring
-
+// leetcode 76 Minimum Window Substring
 
 /*
 time: O(n)
@@ -17,10 +16,9 @@ public class Solution {
             char c1 = s.charAt(end);
             if (map[c1] > 0) counter--;
             map[c1]--;
-            end++;
             while (counter == 0) {
-                if (minLen > end - start) {
-                    minLen = end - start;
+                if (minLen > end - start + 1) {
+                    minLen = end - start + 1;
                     minStart = start;
                 }
                 char c2 = s.charAt(start);
@@ -28,6 +26,7 @@ public class Solution {
                 if (map[c2] > 0) counter++;
                 start++;
             }
+            end++;
         }
         return minLen == Integer.MAX_VALUE ? "" : s.substring(minStart, minStart + minLen);
     }

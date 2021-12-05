@@ -1,4 +1,4 @@
-//leetcode 402 Remove K Digits
+// leetcode 402 Remove K Digits
 
 /*
 time: O(n)
@@ -10,7 +10,7 @@ class Solution {
         StringBuilder sb = new StringBuilder();
         for (char c : num.toCharArray()) {
             while (k > 0 && sb.length() != 0 && sb.charAt(sb.length() - 1) > c) {
-                sb.setLength(sb.length() - 1);
+                sb.deleteCharAt(sb.length() - 1);
                 k--;
             }
             if (sb.length() != 0 || c != '0') sb.append(c);  // Only append when it is not leading zero

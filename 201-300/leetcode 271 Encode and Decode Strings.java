@@ -1,4 +1,4 @@
-//leetcode 271 Encode and Decode Strings
+// leetcode 271 Encode and Decode Strings
 
 /*
 time: O(n)
