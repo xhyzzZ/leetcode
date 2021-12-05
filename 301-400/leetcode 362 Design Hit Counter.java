@@ -1,4 +1,4 @@
-//leetcode 362 Design Hit Counter
+// leetcode 362 Design Hit Counter
 
 /*
 time: O()

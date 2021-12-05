@@ -1,4 +1,4 @@
-//leetcode 268 Missing Number
+// leetcode 268 Missing Number
 
 /*
 time: O(n)
