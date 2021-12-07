@@ -1,8 +1,8 @@
-//leetcode 261 Graph Valid Tree
+// leetcode 261 Graph Valid Tree
 
 /*
-time: O(N ⋅ α(N))
-space: O(N)
+time: O(E⋅α(N))
+space: O(V)
 */
 
 union find
@@ -55,33 +55,6 @@ public class Solution {
         return uf.count == 1;
     }
 }
-
-public class Solution {
-    public boolean validTree(int n, int[][] edges) {
-        // initialize n isolated islands
-        int[] parent = new int[n];
-        for (int i = 0; i < n; i++) {
-            parent[i] = -1;
-        }
-        // perform union find
-        for (int[] e : edges) {
-            int x = findRoot(parent, e[0]);
-            int y = findRoot(parent, e[1]);
-            // if two vertices happen to be in the same set
-            // then there's a cycle
-            if (x == y) return false;
-            // union
-            parent[x] = y;
-        }
-        return edges.length == n - 1;
-    }
-    
-    private int findRoot(int[] parent, int i) {
-        if (nums[i] == -1) return i;
-        return find(nums, nums[i]);
-    }
-}
-
 
 /*
 time: O(V + E)

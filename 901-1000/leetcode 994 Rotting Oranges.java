@@ -1,4 +1,4 @@
-//leetcode 994 Rotting Oranges
+// leetcode 994 Rotting Oranges
 
 /*
 time: O(mn)

@@ -1,10 +1,10 @@
-//leetcode 130 Surrounded Regions
-
+// leetcode 130 Surrounded Regions
 
 /*
 time: O(m * n)
 space: O(m * n)
 */
+
 class Solution {
     public void solve(char[][] board) {
         if (board.length == 0 || board[0].length == 0) return;

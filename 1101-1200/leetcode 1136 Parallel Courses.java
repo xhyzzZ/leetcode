@@ -6,9 +6,9 @@ space: O(v + e)
 */
 
 class Solution {
-    public int minimumSemesters(int N, int[][] relations) {
+    public int minimumSemesters(int n, int[][] relations) {
         Map<Integer, List<Integer>> graph = new HashMap<>();
-        int[] indegree = new int[N + 1];
+        int[] indegree = new int[n + 1];
         for (int[] relation : relations) {
         	int prev = relation[0];
             int next = relation[1];
@@ -17,7 +17,7 @@ class Solution {
         } 
 
         Queue<Integer> queue = new LinkedList<>();
-        for (int i = 1; i <= N; i++) {
+        for (int i = 1; i <= n; i++) {
             if (indegree[i] == 0) {
                 queue.offer(i);
             }
@@ -28,7 +28,7 @@ class Solution {
         	int size = queue.size();
         	for (int i = 0; i < size; i++) {
         		int curr = queue.poll(); 
-	            N--;
+	            n--;
 	            if (!graph.containsKey(curr)) continue;
 	            for (int adj : graph.get(curr)) {
 	                indegree[adj]--;
@@ -40,6 +40,6 @@ class Solution {
         	}
             canFinishCount++;
         }
-        return N == 0 ? canFinishCount : -1;
+        return n == 0 ? canFinishCount : -1;
     }
 }

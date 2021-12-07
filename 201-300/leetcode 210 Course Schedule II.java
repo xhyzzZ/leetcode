@@ -1,4 +1,4 @@
-//leetcode 210 Course Schedule II
+// leetcode 210 Course Schedule II
 
 /*
 time: O(v + e)
@@ -50,6 +50,11 @@ public class Solution {
     }
 }
 
+/*
+time: O(v + e)
+space: O(v + e)
+*/
+
 // bfs has size 
 class Solution {
     public int[] findOrder(int numCourses, int[][] prerequisites) {
@@ -100,10 +105,10 @@ class Solution {
 
 /*
 time: O(v + e)
-space: O(v)
+space: O(v + e)
 */
 
-
+dfs
 public class Solution {
     public int[] findOrder(int numCourses, int[][] prerequisites) {
         List<List<Integer>> graph = new ArrayList<>();

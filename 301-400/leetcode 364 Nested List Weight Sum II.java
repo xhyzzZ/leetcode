@@ -1,4 +1,4 @@
-//leetcode 364 Nested List Weight Sum II
+// leetcode 364 Nested List Weight Sum II
 
 /*
 time: O(n)

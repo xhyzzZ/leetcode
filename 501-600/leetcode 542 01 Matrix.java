@@ -1,8 +1,8 @@
-//leetcode 542 01 Matrix
+// leetcode 542 01 Matrix
 
 /*
-time: O()
-space: O()
+time: O(mn)
+space: O(mn)
 */
 
 class Solution {
@@ -15,8 +15,7 @@ class Solution {
             for (int j = 0; j < n; j++) {
                 if (matrix[i][j] == 0) {
                     queue.offer(new int[] {i, j});
-                }
-                else {
+                } else {
                     matrix[i][j] = Integer.MAX_VALUE;
                 }
             }
