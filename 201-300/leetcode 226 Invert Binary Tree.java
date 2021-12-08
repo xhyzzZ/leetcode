@@ -1,4 +1,4 @@
-//leetcode 226 Invert Binary Tree
+// leetcode 226 Invert Binary Tree
 
 /*
 time: O(n)
@@ -8,9 +8,7 @@ space: O(h)
 bfs
 public class Solution {
     public TreeNode invertTree(TreeNode root) {
-        if (root == null) {
-            return null;
-        }
+        if (root == null) return null;
         Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
         while (!queue.isEmpty()) {
@@ -30,12 +28,15 @@ public class Solution {
     }
 }
 
+/*
+time: O(n)
+space: O(h)
+*/
+
 dfs
 public class Solution {
     public TreeNode invertTree(TreeNode root) {
-        if (root == null) {
-            return null;
-        }
+        if (root == null) return null;
 
         TreeNode left = root.left;
         TreeNode right = root.right;

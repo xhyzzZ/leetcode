@@ -1,4 +1,4 @@
-//leetcode 99 Recover Binary Search Tree
+// leetcode 99 Recover Binary Search Tree
 
 /*
 time: O(n)
@@ -11,7 +11,7 @@ public class Solution {
 	TreeNode prev = null;
 
     public void recoverTree(TreeNode root) {
-        if(root == null) return;
+        if (root == null) return;
         helper(root);
         int temp = first.val;
         first.val = second.val;
@@ -19,10 +19,10 @@ public class Solution {
     }
 
     public void helper(TreeNode root) {
-    	if(root == null) return;
+    	if (root == null) return;
     	helper(root.left);
-    	if(prev != null && prev.val >= root.val) {
-    		if(first == null) first = prev;
+    	if (prev != null && prev.val >= root.val) {
+    		if (first == null) first = prev;
     		second = root;
     	}
     	prev = root;

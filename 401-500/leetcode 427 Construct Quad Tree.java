@@ -1,4 +1,4 @@
-//leetcode 427 Construct Quad Tree
+// leetcode 427 Construct Quad Tree
 
 /*
 time: O()

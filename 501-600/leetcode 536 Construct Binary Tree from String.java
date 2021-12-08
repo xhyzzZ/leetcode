@@ -1,9 +1,8 @@
-//leetcode 536 Construct Binary Tree from String
-
+// leetcode 536 Construct Binary Tree from String
 
 /*
 time: O(n)
-space: O(n)
+space: O(h)
 */
 
 class Solution {
@@ -18,7 +17,7 @@ class Solution {
         if (j < s.length()) {
             i = j;
             int count = 1;
-            while(j + 1 < s.length() && count != 0) {
+            while (j + 1 < s.length() && count != 0) {
                 j++;
                 if (s.charAt(j) == ')') count--;
                 if (s.charAt(j) == '(') count++;

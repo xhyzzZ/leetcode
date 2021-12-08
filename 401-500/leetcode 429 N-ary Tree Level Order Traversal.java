@@ -1,4 +1,4 @@
-//leetcode 429 N-ary Tree Level Order Traversal
+// leetcode 429 N-ary Tree Level Order Traversal
 
 /*
 time: O(n)

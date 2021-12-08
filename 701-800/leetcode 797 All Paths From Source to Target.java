@@ -1,8 +1,8 @@
-//leetcode 797 All Paths From Source to Target
+// leetcode 797 All Paths From Source to Target
 
 /*
-time: O()
-space: O()
+time: O(2^n * n)
+space: O(2^n * n)
 */
 
 class Solution {

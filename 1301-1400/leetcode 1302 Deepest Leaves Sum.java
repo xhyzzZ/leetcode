@@ -9,22 +9,27 @@ bfs
 class Solution {
     public int deepestLeavesSum(TreeNode root) {
         if (root == null) return 0;
-        Queue<TreeNode> q = new LinkedList<>();
-        q.offer(root);
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
         int sum = 0;
-        while (!q.isEmpty()) {
-            int size = q.size();
+        while (!queue.isEmpty()) {
+            int size = queue.size();
             sum = 0; // Reset for calculating the sum of elements of the next level
             for (int i = 0; i < size; i++) {
-                TreeNode top = q.poll();
+                TreeNode top = queue.poll();
                 sum += top.val;
-                if (top.left != null) q.offer(top.left);
-                if (top.right != null) q.offer(top.right);
+                if (top.left != null) queue.offer(top.left);
+                if (top.right != null) queue.offer(top.right);
             }
         }
         return sum;
     }
 }
+
+/*
+time: O(n)
+space: O(h)
+*/
 
 dfs
 class Solution {

@@ -1,4 +1,4 @@
-//leetcode 404 Sum of Left Leaves
+// leetcode 404 Sum of Left Leaves
 
 /*
 time: O(n)

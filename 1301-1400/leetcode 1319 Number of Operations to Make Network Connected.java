@@ -1,8 +1,8 @@
 // leetcode 1319 Number of Operations to Make Network Connected
 
 /*
-time: O()
-space: O()
+time: O(E * α(N))
+space: O(V)
 */
 
 class Solution {

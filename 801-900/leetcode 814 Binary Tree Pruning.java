@@ -1,4 +1,4 @@
-//leetcode 814 Binary Tree Pruning
+// leetcode 814 Binary Tree Pruning
 
 /*
 time: O(n)

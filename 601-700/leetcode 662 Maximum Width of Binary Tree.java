@@ -1,9 +1,10 @@
-//leetcode 662 Maximum Width of Binary Tree
+// leetcode 662 Maximum Width of Binary Tree
 
 /*
 time: O(n)
 space: O(h)
 */
+
 dfs
 class Solution {
     private int max = 1;
@@ -22,26 +23,31 @@ class Solution {
     }
 }
 
+/*
+time: O(n)
+space: O(h)
+*/
+
 bfs
 class Solution {
     public int widthOfBinaryTree(TreeNode root) {
         if (root == null) return 0;
-        Queue<TreeNode> q = new LinkedList<>();
-        q.offer(root);
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
         root.val = 0;
         int max = 1;
-        while (!q.isEmpty()) {
-            int size = q.size();
-            max = Math.max(max, q.peekLast().val - q.peekFirst().val + 1);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            max = Math.max(max, queue.peekLast().val - queue.peekFirst().val + 1);
             for (int i = 0; i < size; i++) {
-                root = q.poll();
+                root = queue.poll();
                 if (root.left != null) {
                     root.left.val = root.val * 2;
-                    q.offer(root.left);
+                    queue.offer(root.left);
                 }
                 if (root.right != null) {
                     root.right.val = root.val * 2 + 1;
-                    q.offer(root.right);
+                    queue.offer(root.right);
                 }
             }
         }

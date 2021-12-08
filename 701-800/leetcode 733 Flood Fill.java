@@ -1,10 +1,10 @@
-//leetcode 733 Flood Fill
-
+// leetcode 733 Flood Fill
 
 /*
 time: O(mn)
 space: O(1)
 */
+
 class Solution {
     public int[][] floodFill(int[][] image, int sr, int sc, int newColor) {
         if (image[sr][sc] == newColor) return image;
