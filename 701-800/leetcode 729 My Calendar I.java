@@ -1,8 +1,8 @@
-//leetcode 729 My Calendar I
+// leetcode 729 My Calendar I
 
 /*
-time: O()
-space: O()
+time: O(nlogn)
+space: O(n)
 */
 
 class MyCalendar {
@@ -15,7 +15,7 @@ class MyCalendar {
 	public boolean book(int start, int end) {
 	    Integer low = map.lowerKey(end);
 	    
-	    if(low == null || map.get(low) <= start) {
+	    if (low == null || map.get(low) <= start) {
 	        map.put(start, end);
 	        return true;
 	    }

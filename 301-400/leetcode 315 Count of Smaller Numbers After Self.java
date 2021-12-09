@@ -1,59 +1,62 @@
-//leetcode 315 Count of Smaller Numbers After Self
+// leetcode 315 Count of Smaller Numbers After Self
 
 /*
 time: O(n^2)
 space: O(k)
-
-Traverse from nums[len - 1] to nums[0], and build a binary search tree, which stores:
-
-val: value of nums[i]
-count: if val == root.val, there will be count number of smaller numbers on the right
-
 */
 
-public class Solution {
-	public List<Integer> countSmaller(int[] nums) {
-		List<Integer> res = new ArrayList<>();
-		if(nums == null || nums.length == 0) return res;
-		TreeNode root = new TreeNode(nums[nums.length - 1]);
-		res.add(0);
-		for(int i = nums.length - 2; i >= 0; i--) {
-			int count = insertNode(root, nums[i]);
-			res.add(count);
-		}
-		Collections.reverse(res);
-		return res;
-	}
+class Solution {
+    public List<Integer> countSmaller(int[] nums) {
+    	// offset negative to non-negative
+        int offset = 10000;
+        // total possible values in nums
+        int size = 2 * 10000 + 1;
+        int[] tree = new int[size * 2];
+        List<Integer> result = new ArrayList<Integer>();
 
-	public int insertNode(TreeNode root, int val) {
-		int thisCount = 0;
-		while(true) {
-			if(val <= root.val) {
-				root.count++;
-				if(root.left == null) {
-					root.left = new TreeNode(val); break;
-				} else {
-					root = root.left;
-				}
-			} else {
-				thisCount += root.count;
-				if(root.right == null) {
-					root.right = new TreeNode(val); break;
-				} else {
-					root = root.right;
-				}
-			}
-		}
-		return thisCount;
-	}
-}
+        for (int i = nums.length - 1; i >= 0; i--) {
+            int smaller_count = query(0, nums[i] + offset, tree, size);
+            result.add(smaller_count);
+            update(nums[i] + offset, 1, tree, size);
+        }
+        Collections.reverse(result);
+        return result;
+    }
 
-class TreeNode {
-	TreeNode left; 
-	TreeNode right;
-	int val;
-	int count = 1;
-	public TreeNode(int val) {
-		this.val = val;
-	}
+    // implement segment tree
+    private void update(int index, int value, int[] tree, int size) {
+        index += size; // shift the index to the leaf
+        // update from leaf to root
+        tree[index] += value;
+        while (index > 1) {
+            index /= 2;
+            tree[index] = tree[index * 2] + tree[index * 2 + 1];
+        }
+    }
+
+    private int query(int left, int right, int[] tree, int size) {
+        // return sum of [left, right)
+        int result = 0;
+        left += size; // shift the index to the leaf
+        right += size;
+        while (left < right) {
+            // if left is a right node
+            // bring the value and move to parent's right node
+            if (left % 2 == 1) {
+                result += tree[left];
+                left++;
+            }
+            // else directly move to parent
+            left /= 2;
+            // if right is a right node
+            // bring the value of the left node and move to parent
+            if (right % 2 == 1) {
+                right--;
+                result += tree[right];
+            }
+            // else directly move to parent
+            right /= 2;
+        }
+        return result;
+    }
 }

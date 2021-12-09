@@ -1,12 +1,12 @@
-//leetcode 307 Range Sum Query - Mutable
+// leetcode 307 Range Sum Query - Mutable
 
 /*
 time: O(logn)
-space: O(logn)
+space: O(1)
 */
 
 public class NumArray {
-
+    
     class SegmentTreeNode {
         int start, end;
         SegmentTreeNode left, right;
@@ -44,11 +44,11 @@ public class NumArray {
         }
     }
    
-    void update(int i, int val) {
-        update(root, i, val);
+    public void update(int index, int val) {
+        update(root, index, val);
     }
    
-    void update(SegmentTreeNode root, int pos, int val) {
+    private void update(SegmentTreeNode root, int pos, int val) {
         if (root.start == root.end) {
            root.sum = val;
         } else {
@@ -62,11 +62,11 @@ public class NumArray {
         }
     }
 
-    public int sumRange(int i, int j) {
-        return sumRange(root, i, j);
+    public int sumRange(int left, int right) {
+        return sumRange(root, left, right);
     }
     
-    public int sumRange(SegmentTreeNode root, int start, int end) {
+    private int sumRange(SegmentTreeNode root, int start, int end) {
         if (root.end == end && root.start == start) {
             return root.sum;
         } else {
