@@ -1,4 +1,4 @@
-//leetcode 1029 Two City Scheduling
+// leetcode 1029 Two City Scheduling
 
 /*
 time: O(nlogn)

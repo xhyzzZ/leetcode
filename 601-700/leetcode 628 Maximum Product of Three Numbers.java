@@ -1,4 +1,4 @@
-//leetcode 628 Maximum Product of Three Numbers
+// leetcode 628 Maximum Product of Three Numbers
 
 /*
 time: O(n)

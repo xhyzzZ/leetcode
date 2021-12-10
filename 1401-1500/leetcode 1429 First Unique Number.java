@@ -1,8 +1,8 @@
 // leetcode 1429 First Unique Number
 
 /*
-time: O()
-space: O()
+time: showFirstUnique() O(1), add() O(1)
+space: O(n)
 */
 
 class FirstUnique {
@@ -17,17 +17,6 @@ class FirstUnique {
             this.pre = null;
         }
     } 
-    
-    private void removeNode(DLinkedNode node) {
-        DLinkedNode pre = node.pre;
-        DLinkedNode post = node.post;
-        if (pre != null && post != null) {
-            pre.post = post;
-            post.pre = pre;
-            node.post = null;
-            node.pre = null;
-        }
-    }
     
     private DLinkedNode head, tail;
     private Map<Integer, DLinkedNode> cache;
@@ -61,10 +50,21 @@ class FirstUnique {
         }
     }
     
-    public void addToEnd(DLinkedNode node) {
+    private void addToEnd(DLinkedNode node) {
         node.post = tail;
         node.pre = tail.pre;
         tail.pre = node;
         node.pre.post = node; 
+    }
+
+    private void removeNode(DLinkedNode node) {
+        DLinkedNode pre = node.pre;
+        DLinkedNode post = node.post;
+        if (pre != null && post != null) {
+            pre.post = post;
+            post.pre = pre;
+            node.post = null;
+            node.pre = null;
+        }
     }
 }

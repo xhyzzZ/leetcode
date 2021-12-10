@@ -1,4 +1,4 @@
-//leetcode 901 Online Stock Span
+// leetcode 901 Online Stock Span
 
 /*
 time: O(n)
@@ -15,7 +15,7 @@ class StockSpanner {
         int res = 1;
         while (!stack.isEmpty() && stack.peek()[0] <= price)
             res += stack.pop()[1];
-        stack.push(new int[]{price, res});
+        stack.push(new int[] {price, res});
         return res;
     }
 }

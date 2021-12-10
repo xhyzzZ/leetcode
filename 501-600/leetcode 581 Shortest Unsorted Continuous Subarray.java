@@ -1,4 +1,4 @@
-//leetcode 581 Shortest Unsorted Continuous Subarray
+// leetcode 581 Shortest Unsorted Continuous Subarray
 
 /*
 time: O(nlogn)

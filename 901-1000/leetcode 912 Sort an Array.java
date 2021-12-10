@@ -1,4 +1,4 @@
-//leetcode 912 Sort an Array
+// leetcode 912 Sort an Array
 
 /*
 time: O(nlogn)

@@ -1,8 +1,8 @@
 // leetcode 1352 Product of the Last K Numbers
 
 /*
-time: O()
-space: O()
+time: O(1)
+space: O(n)
 */
 
 class ProductOfNumbers {

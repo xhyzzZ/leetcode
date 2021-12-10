@@ -1,4 +1,4 @@
-//leetcode 769 Max Chunks To Make Sorted
+// leetcode 769 Max Chunks To Make Sorted
 
 /*
 time: O(n)
