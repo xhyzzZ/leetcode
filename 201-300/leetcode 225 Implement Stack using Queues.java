@@ -1,7 +1,7 @@
-//leetcode 225 Implement Stack using Queues
+// leetcode 225 Implement Stack using Queues
 
 /*
-time: O()
+time: push O(n) pop O(1)
 space: O()
 */
 

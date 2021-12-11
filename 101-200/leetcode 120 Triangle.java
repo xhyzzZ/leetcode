@@ -1,18 +1,19 @@
-//leetcode 120 Triangle
-
+// leetcode 120 Triangle
 
 /*
-time: O()
-space: O()
+time: O(n^2)
+space: O(1)
 */
-public class Solution {
-    public int minimumTotal(List<List<Integer>> triangle) {
-        int[] A = new int[triangle.size() + 1];
-        for (int i = triangle.size() - 1; i >= 0; i--) {
-        	for (j = 0; j <= i; j++) {
-        		A[j] = Math.min(A[j], A[j + 1]) + triangle.get(i).get(j);
-        	}
+
+// Bottom-up
+ class Solution {
+    public int minimumTotal(List<List<Integer>> triangle) {        
+        for (int row = triangle.size() - 2; row >= 0; row--) {
+            for (int col = 0; col <= row; col++) {
+                int bestBelow = Math.min(triangle.get(row + 1).get(col), triangle.get(row + 1).get(col + 1));
+                triangle.get(row).set(col, bestBelow + triangle.get(row).get(col));
+            }
         }
-        return A[0];
+        return triangle.get(0).get(0);
     }
 }

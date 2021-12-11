@@ -1,4 +1,4 @@
-//leetcode 322 Coin Change
+// leetcode 322 Coin Change
 
 /*
 time: O(n * amount)

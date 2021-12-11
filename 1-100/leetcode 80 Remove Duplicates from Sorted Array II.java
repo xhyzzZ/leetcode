@@ -1,10 +1,10 @@
-//leetcode 80 Remove Duplicates from Sorted Array II
-
+// leetcode 80 Remove Duplicates from Sorted Array II
 
 /*
 time: O(n)
 space: O(1)
 */
+
 public class Solution {
     public int removeDuplicates(int[] nums) {
         int i = 0;

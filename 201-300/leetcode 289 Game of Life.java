@@ -1,4 +1,4 @@
-//leetcode 289 Game of Life
+// leetcode 289 Game of Life
 
 /*
 time: O()
