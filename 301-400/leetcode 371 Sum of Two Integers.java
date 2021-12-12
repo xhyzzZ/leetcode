@@ -1,4 +1,4 @@
-//leetrcode 371 Sum of Two Integers
+// leetrcode 371 Sum of Two Integers
 
 /*
 time: O(n)

@@ -1,4 +1,4 @@
-//leetcode 636 Exclusive Time of Functions
+// leetcode 636 Exclusive Time of Functions
 
 /*
 time: O(n)

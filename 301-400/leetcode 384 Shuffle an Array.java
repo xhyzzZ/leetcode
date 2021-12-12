@@ -1,8 +1,8 @@
-//leetcode 384 Shuffle an Array
+// leetcode 384 Shuffle an Array
 
 /*
-time: O()
-space: O()
+time: O(n)
+space: O(n)
 */
 
 class Solution {

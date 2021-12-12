@@ -1,4 +1,4 @@
-//leetcode 554 Brick Wall
+// leetcode 554 Brick Wall
 
 /*
 time: O(n^2)

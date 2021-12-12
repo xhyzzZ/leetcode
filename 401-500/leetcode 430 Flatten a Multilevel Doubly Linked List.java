@@ -1,8 +1,8 @@
-//leetcode 430 Flatten a Multilevel Doubly Linked List
+// leetcode 430 Flatten a Multilevel Doubly Linked List
 
 /*
 time: O(n)
-space: O(1)
+space: O(n)
 */
 
 /*
@@ -46,6 +46,11 @@ public class Solution {
         return head;
     }
 }        
+
+/*
+time: O(n)
+space: O(1)
+*/
 
 public class Solution {
     public Node flatten(Node head) {
