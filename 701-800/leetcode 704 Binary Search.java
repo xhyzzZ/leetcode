@@ -1,4 +1,4 @@
-//leetcode 704 Binary Search
+// leetcode 704 Binary Search
 
 /*
 time: O(logn)

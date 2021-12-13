@@ -1,7 +1,7 @@
-//leetcode 706 Design HashMap
+// leetcode 706 Design HashMap
 
 /*
-time: O()
+time: O(1)
 space: O()
 */
 

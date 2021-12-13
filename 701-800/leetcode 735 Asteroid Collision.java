@@ -1,32 +1,29 @@
-//leetcode 735 Asteroid Collision
+// leetcode 735 Asteroid Collision
 
 /*
-
 time: O(n)
 space: O(n)
 */
 
 class Solution {
     public int[] asteroidCollision(int[] asteroids) {
-        Stack<Integer> s = new Stack<>();
-        for(int i : asteroids) {
-            if(i > 0) {
-                s.push(i);
-            } else {// i is negative
-                while(!s.isEmpty() && s.peek() > 0 && s.peek() < Math.abs(i)) {
-                    s.pop();
+        // 4 scenarios: 1.+ + 2.- - 3.+ - 4.- +
+        // when collision happens: only 3 which is + -
+        Stack<Integer> stack = new Stack<>();
+        for (int cur : asteroids) {
+            if (cur > 0) { // previous one does not matter, no collision forever
+                stack.push(cur);
+            } else {
+                while (!stack.isEmpty() && stack.peek() > 0 && -cur > stack.peek()) { // destroy the previous positive one(s) 
+                    stack.pop();
                 }
-                if(s.isEmpty() || s.peek() < 0) {
-                    s.push(i);
-                } else if(i + s.peek() == 0) {
-                    s.pop(); //equal
+                if (stack.isEmpty() || stack.peek() < 0) {
+                    stack.push(cur);
+                } else if (stack.peek() == -cur) {
+                    stack.pop();
                 }
             }
         }
-        int[] res = new int[s.size()];   
-        for(int i = res.length - 1; i >= 0; i--) {
-            res[i] = s.pop();
-        }
-        return res;
+        return stack.stream().mapToInt(i -> i).toArray();
     }
 }

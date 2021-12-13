@@ -1,8 +1,8 @@
-//leetcode 836 Rectangle Overlap
+// leetcode 836 Rectangle Overlap
 
 /*
-time: O()
-space: O()
+time: O(1)
+space: O(1)
 */
 
 class Solution {

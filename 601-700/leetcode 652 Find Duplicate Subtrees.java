@@ -1,8 +1,8 @@
-//leetcode 652 Find Duplicate Subtrees
+// leetcode 652 Find Duplicate Subtrees
 
 /*
-time: O(n)
-space: O(n)
+time: O(n^2)
+space: O(h)
 */
 
 class Solution {
@@ -12,14 +12,12 @@ class Solution {
         postOrder(root, map, res);
         return res;
     }
-    private String postOrder(TreeNode root,Map<String, Integer> map, List<TreeNode> res) {
-        if(root == null) {
-            return "#";
-        }
+    private String postOrder(TreeNode root, Map<String, Integer> map, List<TreeNode> res) {
+        if (root == null) return "#";
         String left = postOrder(root.left, map, res);
         String right = postOrder(root.right, map, res);
         String serial = left + "," + right + "," + root.val;
-        if(map.containsKey(serial) && map.get(serial) == 1){
+        if (map.containsKey(serial) && map.get(serial) == 1) {
             res.add(root);
         }
         map.put(serial, map.getOrDefault(serial, 0) + 1);
