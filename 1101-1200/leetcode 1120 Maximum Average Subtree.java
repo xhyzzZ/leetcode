@@ -2,7 +2,7 @@
 
 /*
 time: O(n)
-space: O(h)
+space: O(n)
 */
 
 class Solution {
@@ -19,7 +19,7 @@ class Solution {
         int[] right = dfs(root.right);
         ans[0] = left[0] + right[0] + root.val;
         ans[1] = left[1] + right[1] + 1;
-        maxAverage = Math.max(maxAverage, (double)ans[0] / (double)ans[1]);
+        maxAverage = Math.max(maxAverage, (double) ans[0] / (double) ans[1]);
         return ans;
     }
 }

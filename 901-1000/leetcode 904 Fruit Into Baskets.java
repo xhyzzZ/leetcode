@@ -1,4 +1,4 @@
-//leetcode 904 Fruit Into Baskets
+// leetcode 904 Fruit Into Baskets
 
 /*
 time: O(n)
@@ -6,18 +6,19 @@ space: O(1)
 */
 
 class Solution {
-    public int totalFruit(int[] tree) {
-    	if(tree == null || tree.length == 0) return 0;
+    public int totalFruit(int[] fruits) {
+    	if (fruits == null || fruits.length == 0) return 0;
         Map<Integer, Integer> count = new HashMap<Integer, Integer>();
-        int res = 0, i = 0;
-        for (int j = 0; j < tree.length; ++j) {
-            count.put(tree[j], count.getOrDefault(tree[j], 0) + 1);
+        int res = 0, start = 0, end = 0;
+        while (end < fruits.length) {
+            count.put(fruits[end], count.getOrDefault(fruits[end], 0) + 1);
             while (count.size() > 2) {
-                count.put(tree[i], count.get(tree[i]) - 1);
-                if (count.get(tree[i]) == 0) count.remove(tree[i]);
-                i++;
+                count.put(fruits[start], count.get(fruits[start]) - 1);
+                if (count.get(fruits[start]) == 0) count.remove(fruits[start]);
+                start++;
             }
-            res = Math.max(res, j - i + 1);
+            res = Math.max(res, end - start + 1);
+            end++;
         }
         return res;
     }

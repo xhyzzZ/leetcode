@@ -1,19 +1,20 @@
-//leetcode 907 Sum of Subarray Minimums
+// leetcode 907 Sum of Subarray Minimums
 
 /*
-time: O()
-space: O()
+time: O(n)
+space: O(n)
 */
 
 class Solution {
-    public int sumSubarrayMins(int[] A) {
-        Stack<Integer> s = new Stack<>();
-        int n = A.length, res = 0, mod = (int)1e9 + 7, j, k;
+    public int sumSubarrayMins(int[] arr) {
+        Stack<Integer> stack = new Stack<>();
+        int n = arr.length, j, k;
+        long res = 0, mod = (long) 1e9 + 7;
         for (int i = 0; i <= n; i++) {
-            while (!s.isEmpty() && A[stack.peek()] > (i == n ? 0 : A[i])) {
+            while (!stack.isEmpty() && arr[stack.peek()] > (i == n ? 0 : arr[i])) {
                 j = stack.pop();
                 k = stack.isEmpty() ? -1 : stack.peek();
-                res = (res + A[j] * (i - j) * (j - k)) % mod;
+                res = (res + arr[j] * (i - j) * (j - k)) % mod;
             }
             stack.push(i);
         }

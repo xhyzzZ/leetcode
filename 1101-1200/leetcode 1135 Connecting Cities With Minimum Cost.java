@@ -1,8 +1,8 @@
 // leetcode 1135 Connecting Cities With Minimum Cost
 
 /*
-time: O()
-space: O()
+time: O(MlogM + M)
+space: O(v)
 */
 
 class Solution {
