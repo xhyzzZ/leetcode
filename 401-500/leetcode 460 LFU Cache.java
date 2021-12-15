@@ -1,8 +1,8 @@
-//leetcode 460 LFU Cache
+// leetcode 460 LFU Cache
 
 /*
 time: O(1)
-space: O()
+space: O(n)
 */
 676
 class LFUCache {
@@ -26,6 +26,25 @@ class LFUCache {
         
         update(key);
         return keyToVal.get(key);
+    }
+
+    public void put(int key, int value) {
+        if (cap <= 0)
+            return;
+        
+        if (keyToVal.containsKey(key)) {
+            keyToVal.put(key, value);
+            update(key);
+            return;
+        } 
+        
+        if (keyToVal.size() >= cap) 
+            evict();
+        
+        keyToVal.put(key, value);
+        keyToCount.put(key, 1);
+        addToList(1, key);
+        min = 1;
     }
     
     private void update(int key) {
@@ -51,24 +70,5 @@ class LFUCache {
         countToLRUKeys.get(min).remove(key);
         keyToVal.remove(key);
         keyToCount.remove(key);
-    }
-    
-    public void put(int key, int value) {
-        if (cap <= 0)
-            return;
-        
-        if (keyToVal.containsKey(key)) {
-            keyToVal.put(key, value);
-            update(key);
-            return;
-        } 
-        
-        if (keyToVal.size() >= cap) 
-            evict();
-        
-        keyToVal.put(key, value);
-        keyToCount.put(key, 1);
-        addToList(1, key);
-        min = 1;
     }
 }
