@@ -1,4 +1,4 @@
-//leetcode 368 Largest Divisible Subset
+// leetcode 368 Largest Divisible Subset
 
 /*
 time: O(n^2)

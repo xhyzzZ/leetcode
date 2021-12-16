@@ -1,9 +1,10 @@
-//leetcode 301 Remove Invalid Parentheses
+// leetcode 301 Remove Invalid Parentheses
 
 /*
 time: O(2^n)
-space: O()
+space: O(n)
 */
+
 public class Solution {
     public List<String> removeInvalidParentheses(String s) {
         int rmL = 0, rmR = 0;
@@ -24,9 +25,7 @@ public class Solution {
     }
 
     public void dfs(String s, int i, Set<String> res, StringBuilder sb, int rmL, int rmR, int open) {
-    	if (rmL < 0 || rmR < 0 || open < 0) {
-    		return;
-    	}
+    	if (rmL < 0 || rmR < 0 || open < 0) return;
     	if (i == s.length()) {
     		if (rmL == 0 && rmR == 0 && open == 0) {
     			res.add(sb.toString());

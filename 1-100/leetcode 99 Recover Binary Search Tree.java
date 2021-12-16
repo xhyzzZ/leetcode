@@ -4,8 +4,9 @@
 time: O(n)
 space: O(n)
 */
-public class Solution {
 
+recursive
+public class Solution {
 	TreeNode first = null;
 	TreeNode second = null;
 	TreeNode prev = null;
@@ -13,12 +14,10 @@ public class Solution {
     public void recoverTree(TreeNode root) {
         if (root == null) return;
         helper(root);
-        int temp = first.val;
-        first.val = second.val;
-        second.val = temp;
+        swap(first, second);
     }
 
-    public void helper(TreeNode root) {
+    private void helper(TreeNode root) {
     	if (root == null) return;
     	helper(root.left);
     	if (prev != null && prev.val >= root.val) {
@@ -27,5 +26,46 @@ public class Solution {
     	}
     	prev = root;
     	helper(root.right);
+    }
+
+    private void swap(TreeNode a, TreeNode b) {
+        int tmp = a.val;
+        a.val = b.val;
+        b.val = tmp;
+    }
+}
+
+/*
+time: O(n)
+space: O(n)
+*/
+
+iterative
+class Solution {
+    public void recoverTree(TreeNode root) {
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        TreeNode x = null, y = null, pred = null;
+
+        while (!stack.isEmpty() || root != null) {
+            while (root != null) {
+                stack.add(root);
+                root = root.left;
+            }
+            root = stack.removeLast();
+            if (pred != null && root.val < pred.val) {
+                y = root;
+                if (x == null) x = pred;
+                else break;
+            }
+            pred = root;
+            root = root.right;
+        }
+        swap(x, y);
+    }
+
+    private void swap(TreeNode a, TreeNode b) {
+        int tmp = a.val;
+        a.val = b.val;
+        b.val = tmp;
     }
 }

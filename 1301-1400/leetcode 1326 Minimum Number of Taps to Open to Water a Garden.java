@@ -1,8 +1,8 @@
 // leetcode 1326 Minimum Number of Taps to Open to Water a Garden
 
 /*
-time: O()
-space: O()
+time: O(nlogn)
+space: O(n)
 */
 
 class Interval {

@@ -1,9 +1,10 @@
-//leetcode 85 Maximal Rectangle
+// leetcode 85 Maximal Rectangle
 
 /*
 time: O(n^2)
-space: O()
+space: O(n)
 */
+
 public class Solution {
 	public int maximalRectangle(char[][] matrix) {
 	    if (matrix == null || matrix.length == 0 || matrix[0].length == 0) return 0;
