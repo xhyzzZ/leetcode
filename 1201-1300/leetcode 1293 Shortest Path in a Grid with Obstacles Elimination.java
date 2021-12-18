@@ -1,8 +1,8 @@
 // leetcode 1293 Shortest Path in a Grid with Obstacles Elimination
 
 /*
-time: O()
-space: O()
+time: O(mnk)
+space: O(mnk)
 */
 
 class Solution {
@@ -10,19 +10,17 @@ class Solution {
     public int shortestPath(int[][] grid, int k) {
         int n = grid.length;
         int m = grid[0].length;
-        Queue<int[]> q = new LinkedList<>();
+        Queue<int[]> queue = new LinkedList<>();
         boolean[][][] visited = new boolean[n][m][k + 1];
         visited[0][0][0] = true;
-        q.offer(new int[] {0, 0, 0});
+        queue.offer(new int[] {0, 0, 0});
         int res = 0;
-        while (!q.isEmpty()) {
-            int size = q.size();
+        while (!queue.isEmpty()) {
+            int size = queue.size();
             for (int i = 0; i < size; i++) { 
-                int[] info = q.poll();
+                int[] info = queue.poll();
                 int r = info[0], c = info[1], curK = info[2];
-                if (r == n - 1 && c == m - 1) {
-                    return res;
-                }
+                if (r == n - 1 && c == m - 1) return res;
                 for (int[] dir : dirs) {
                     int nextR = dir[0] + r;
                     int nextC = dir[1] + c;
@@ -33,7 +31,7 @@ class Solution {
                         }
                         if (nextK <= k && !visited[nextR][nextC][nextK]) {
                             visited[nextR][nextC][nextK] = true;
-                            q.offer(new int[] {nextR, nextC, nextK});
+                            queue.offer(new int[] {nextR, nextC, nextK});
                         }
                     }
                 }                
