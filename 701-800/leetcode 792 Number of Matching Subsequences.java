@@ -1,12 +1,12 @@
 // leetcode 792 Number of Matching Subsequences
 
 /*
-time: O()
-space: O()
+time: O(n * m * L), n: length of words, m : S length, L: average word length
+space: O(n)
 */
 
 class Solution {
-    public int numMatchingSubseq(String S, String[] words) {
+    public int numMatchingSubseq(String s, String[] words) {
         Map<Character, Deque<String>> map = new HashMap<>();
         for (char c = 'a'; c <= 'z'; c++) {
             map.putIfAbsent(c, new LinkedList<String>());
@@ -16,7 +16,7 @@ class Solution {
         }
 
         int count = 0;
-        for (char c : S.toCharArray()) {
+        for (char c : s.toCharArray()) {
             Deque<String> queue = map.get(c);
             int size = queue.size();
             for (int i = 0; i < size; i++) {

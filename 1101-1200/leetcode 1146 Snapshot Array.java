@@ -1,8 +1,8 @@
 // leetcode 1146 Snapshot Array
 
 /*
-time: O()
-space: O()
+time: Instantiation cost O(length), each call of get()/set() cost O(log(count)), snap() O(1);
+space: Total cost O(length + count).
 */
 
 class SnapshotArray {
