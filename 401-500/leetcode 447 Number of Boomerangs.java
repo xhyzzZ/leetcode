@@ -1,4 +1,4 @@
-//leetcode 447 Number of Boomerangs
+// leetcode 447 Number of Boomerangs
 
 /*
 time: O(n^2)
@@ -10,16 +10,15 @@ class Solution {
 	    int res = 0;
 
 	    Map<Integer, Integer> map = new HashMap<>();
-	    for(int i = 0; i < points.length; i++) {
-	        for(int j = 0; j < points.length; j++) {
-	            if(i == j)
-	                continue;
+	    for (int i = 0; i < points.length; i++) {
+	        for (int j = 0; j < points.length; j++) {
+	            if (i == j) continue;
 	            
 	            int d = getDistance(points[i], points[j]);                
 	            map.put(d, map.getOrDefault(d, 0) + 1);
 	        }
 	        
-	        for(int val : map.values()) {
+	        for (int val : map.values()) {
 	            res += val * (val - 1);
 	        }            
 	        map.clear();

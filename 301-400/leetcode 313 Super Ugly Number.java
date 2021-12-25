@@ -1,4 +1,4 @@
-//leetcode 313 Super Ugly Number
+// leetcode 313 Super Ugly Number
 
 /*
 time: O(kn)
@@ -18,7 +18,7 @@ class Solution {
             
             next = Integer.MAX_VALUE;
             for (int j = 0; j < primes.length; j++) {
-                //skip duplicate and avoid extra multiplication
+                // skip duplicate and avoid extra multiplication
                 if (val[j] == ugly[i]) val[j] = ugly[idx[j]++] * primes[j];
                 //find next ugly number
                 next = Math.min(next, val[j]);
