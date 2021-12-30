@@ -1,4 +1,4 @@
-//leetcode 710 Random Pick with Blacklist
+// leetcode 710 Random Pick with Blacklist
 
 /*
 time: O(B)
@@ -11,20 +11,20 @@ class Solution {
 	Random r;
 	Map<Integer, Integer> map;
 
-    public Solution(int N, int[] blacklist) {
+    public Solution(int n, int[] blacklist) {
     	map = new HashMap<>();
     	for (int b : blacklist) {
     		map.put(b, -1);
     	}    
-    	M = N - map.size();
+    	M = n - map.size();
 
     	for (int b : blacklist) {
     		if (b < M) {
-    			while (map.containsKey(N - 1)) {
-    				N--;
+    			while (map.containsKey(n - 1)) {
+    				n--;
     			}
-    			map.put(b, N - 1);
-    			N--;
+    			map.put(b, n - 1);
+    			n--;
     		}
     	}
     	r = new Random();
