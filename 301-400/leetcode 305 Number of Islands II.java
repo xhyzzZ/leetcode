@@ -5,12 +5,53 @@ time: O()
 space: O()
 */
 
+class UnionFind {
+    private int count = 0;
+    private int[] parent, rank;
+    
+    public UnionFind(int n) {
+        count = n;
+        parent = new int[n];
+        rank = new int[n];
+        for (int i = 0; i < n; i++) {
+            parent[i] = i;
+        }
+    }
+    
+    // find(...) amortizes to O(α(N))
+    public int find(int p) {
+        if (parent[p] == p) return p;
+        return find(parent[p]);
+    }
+    
+    // path compression and union by rank to optimize
+    public boolean union(int p, int q) {
+        int rootP = find(p);
+        int rootQ = find(q);
+        if (rootP == rootQ) return false;
+        if (rank[rootQ] > rank[rootP]) {
+            parent[rootP] = rootQ;
+        } else if (rank[rootQ] < rank[rootP]) {
+            parent[rootQ] = rootP;
+        } else {
+            parent[rootQ] = rootP;
+            rank[rootP]++;
+        }
+        count--;
+        return true;
+    }
+    
+    public int count() {
+        return count;
+    }
+}
+
 class Solution {
-    int[][] dirs = {{0, 1}, {1, 0}, {-1, 0}, {0, -1}};
+    private static int[][] dirs = {{0, 1}, {1, 0}, {-1, 0}, {0, -1}};
 
 	public List<Integer> numIslands2(int m, int n, int[][] positions) {
-	    List<Integer> result = new ArrayList<>();
-	    if(m <= 0 || n <= 0) return result;
+	    List<Integer> res = new ArrayList<>();
+	    if (m <= 0 || n <= 0) return res;
 
 	    int count = 0;                      // number of islands
 	    int[] roots = new int[m * n];       // one island = one tree
