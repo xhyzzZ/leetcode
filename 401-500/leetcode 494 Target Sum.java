@@ -70,6 +70,7 @@ dp
 public class Solution {
     public int findTargetSumWays(int[] nums, int target) {
         int total = Arrays.stream(nums).sum();
+        // dp[i][j] represents number of possible ways to reach sum j by using first ith items
         int[][] dp = new int[nums.length][2 * total + 1];
         dp[0][nums[0] + total] = 1;
         dp[0][-nums[0] + total] += 1;
