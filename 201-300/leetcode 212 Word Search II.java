@@ -12,6 +12,7 @@ class Solution {
 	    String word;
 	}
 
+	private static final int[][] dirs = new int[][] {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
     public List<String> findWords(char[][] board, String[] words) {
 	    List<String> res = new ArrayList<>();
 	    TrieNode root = buildTrie(words);

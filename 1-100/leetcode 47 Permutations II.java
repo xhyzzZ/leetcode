@@ -1,10 +1,10 @@
-//leetcode 47 Permutations II
-
+// leetcode 47 Permutations II
 
 /*
-time: O(n!)
+time: O(n! * n)
 space: O(n)
-
+we did not take into account the space needed to hold the results. 
+Otherwise, the space complexity would become O(n! * n).
 */
 
 public class Solution {
@@ -16,7 +16,7 @@ public class Solution {
         return res;
     }
 
-    public void helper(List<List<Integer>> res, List<Integer> list, int[] nums, boolean[] used) {
+    private void helper(List<List<Integer>> res, List<Integer> list, int[] nums, boolean[] used) {
     	if (list.size() == nums.length) {
     		res.add(new ArrayList<>(list));
     	}
