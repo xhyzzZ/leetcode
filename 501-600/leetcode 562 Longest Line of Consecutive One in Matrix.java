@@ -1,39 +1,28 @@
-//leetcode 562 Longest Line of Consecutive One in Matrix
+// leetcode 562 Longest Line of Consecutive One in Matrix
 
-/**
- * time: O()
- * space: O()
- */
+/*
+time: O(mn)
+space: O(mn)
+*/
 
 class Solution {
-    public int longestLine(int[][] M) {
-        if (M.length == 0 || M[0].length == 0) return 0;
-        int m = M.length, n = M[0].length;
-        int max = 0, hori = 0, vert = 0, inc = 0, desc = 0;
-        for (int i = 0; i < m; i++, hori = 0) {
-            for (int j = 0; j < n; j++) {
-                hori = M[i][j] > 0 ? hori + 1 : 0;
-                max = Math.max(max, hori);
+    public int longestLine(int[][] mat) {
+        if (mat.length == 0) return 0;
+        int ones = 0;
+        // dp[0], dp[1], dp[2] , dp[3] are used to store the maximum number of 
+        // continuous 1's found so far along the Horizontal, Vertical, Diagonal and Anti-diagonal lines
+        int[][][] dp = new int[mat.length][mat[0].length][4];
+        for (int i = 0; i < mat.length; i++) {
+            for (int j = 0; j < mat[0].length; j++) {
+                if (mat[i][j] == 1) {
+                    dp[i][j][0] = j > 0 ? dp[i][j - 1][0] + 1 : 1;
+                    dp[i][j][1] = i > 0 ? dp[i - 1][j][1] + 1 : 1;
+                    dp[i][j][2] = (i > 0 && j > 0) ? dp[i - 1][j - 1][2] + 1 : 1;
+                    dp[i][j][3] = (i > 0 && j < mat[0].length - 1) ? dp[i - 1][j + 1][3] + 1 : 1;
+                    ones = Math.max(ones, Math.max(Math.max(dp[i][j][0], dp[i][j][1]), Math.max(dp[i][j][2], dp[i][j][3])));
+                }
             }
         }
-        for (int j = 0; j < n; j++, vert = 0) {
-            for (int i = 0; i < m; i++) {
-                vert = M[i][j] > 0 ? vert + 1 : 0;
-                max = Math.max(max, vert);
-            }
-        }
-        for (int k = 0; k < m + n; k++, inc = 0, desc = 0) {
-            // increasing start from left cells then bottom cells
-            for (int i = Math.min(k, m - 1), j = Math.max(0, k - m); i >= 0 && j < n; i--, j++) {
-                inc = M[i][j] > 0 ? inc + 1 : 0;
-                max = Math.max(max, inc);
-            }
-            // decreasing start from left cells then top cells;
-            for (int i = Math.max(m - 1 - k, 0), j = Math.max(0, k - m); i < m && j < n; i++, j++) {
-                desc = M[i][j] > 0 ? desc + 1 : 0;
-                max = Math.max(max, desc);
-            }
-        }
-        return max;
+        return ones;
     }
 }

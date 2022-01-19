@@ -1,4 +1,4 @@
-//leetcode 605 Can Place Flowers
+// leetcode 605 Can Place Flowers
 
 /*
 time: O(n)

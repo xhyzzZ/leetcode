@@ -1,4 +1,4 @@
-//leetcode 582 Kill Process
+// leetcode 582 Kill Process
 
 /*
 time: O(n)
@@ -13,13 +13,13 @@ class Solution {
             map.get(ppid.get(i)).add(pid.get(i));
         }
         List<Integer> ans = new ArrayList<>();
-        Queue<Integer> q = new ArrayDeque<>();
-        q.add(kill);
-        while (!q.isEmpty()) {
-            int n = q.poll();
-            ans.add(n);
-            if (map.containsKey(n)) {
-                q.addAll(map.get(n));
+        Queue<Integer> queue = new ArrayDeque<>();
+        queue.add(kill);
+        while (!queue.isEmpty()) {
+            int cur = queue.poll();
+            ans.add(cur);
+            if (map.containsKey(cur)) {
+                queue.addAll(map.get(cur));
             }
         }
         return ans;

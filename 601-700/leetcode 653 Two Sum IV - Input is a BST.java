@@ -1,4 +1,4 @@
-//leetcode 653 Two Sum IV - Input is a BST
+// leetcode 653 Two Sum IV - Input is a BST
 
 /*
 time: O(n)

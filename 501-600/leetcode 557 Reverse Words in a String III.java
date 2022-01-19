@@ -1,4 +1,4 @@
-//leetcode 557 Reverse Words in a String III
+// leetcode 557 Reverse Words in a String III
 
 /*
 time: O(n)
@@ -23,7 +23,8 @@ class Solution {
             char temp = c[i];
             c[i] = c[j];
             c[j] = temp;
-            i++; j--;
+            i++; 
+            j--;
         }
     }
 }

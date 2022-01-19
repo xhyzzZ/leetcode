@@ -1,22 +1,27 @@
-//leetcode 524 Longest Word in Dictionary through Deleting
+// leetcode 524 Longest Word in Dictionary through Deleting
 
 /*
-time: O()
-space: O()
+time: O(nx)
+space: O(x)
 */
 
-class Solution {
-    public String findLongestWord(String s, List<String> d) {
-        String longest = "";
-	    for (String dictWord : d) {
-	        int i = 0;
-	        for (char c : s.toCharArray()) 
-	            if (i < dictWord.length() && c == dictWord.charAt(i)) i++;
+public class Solution {
+	public String findLongestWord(String s, List<String> dictionary) {
+        String maxStr = "";
+        for (String str : dictionary) {
+            if (isSubsequence(str, s)) {
+                if (str.length() > maxStr.length() || 
+                	(str.length() == maxStr.length() && str.compareTo(maxStr) < 0)) maxStr = str;
+            }
+        }
+        return maxStr;
+    }
 
-	        if (i == dictWord.length() && dictWord.length() >= longest.length()) 
-	            if (dictWord.length() > longest.length() || dictWord.compareTo(longest) < 0)
-	                longest = dictWord;
-	    }
-	    return longest;
+    private boolean isSubsequence(String x, String y) {
+        int j = 0;
+        for (int i = 0; i < y.length() && j < x.length(); i++) {
+            if (x.charAt(j) == y.charAt(i)) j++;
+        }
+        return j == x.length();
     }
 }
