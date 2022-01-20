@@ -1,4 +1,4 @@
-//leetcode 701 Insert into a Binary Search Tree
+// leetcode 701 Insert into a Binary Search Tree
 
 /*
 time: O(n)
