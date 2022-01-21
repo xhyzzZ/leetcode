@@ -1,23 +1,23 @@
-//leetcode 979 Distribute Coins in Binary Tree
+// leetcode 979 Distribute Coins in Binary Tree
 
 /*
-time: O()
-space: O()
+time: O(n)
+space: O(h)
 */
 
 class Solution {
+    int ans;
     public int distributeCoins(TreeNode root) {
-        int res = 0;
-        if (root.left != null) {
-            res += distributeCoins(root.left);
-            root.val += root.left.val - 1;
-            res += Math.abs(root.left.val - 1);
-        }
-        if (root.right != null) {
-            res += distributeCoins(root.right);
-            root.val += root.right.val - 1;
-            res += Math.abs(root.right.val - 1);
-        }
-        return res;
+        ans = 0;
+        dfs(root);
+        return ans;
+    }
+
+    public int dfs(TreeNode node) {
+        if (node == null) return 0;
+        int left = dfs(node.left);
+        int right = dfs(node.right);
+        ans += Math.abs(left) + Math.abs(right);
+        return node.val + left + right - 1;
     }
 }

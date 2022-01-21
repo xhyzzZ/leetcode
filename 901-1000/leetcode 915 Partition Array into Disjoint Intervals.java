@@ -1,4 +1,4 @@
-//leetcode 915 Partition Array into Disjoint Intervals
+// leetcode 915 Partition Array into Disjoint Intervals
 
 /*
 time: O(n)
@@ -14,13 +14,20 @@ and we have to recalculate the max value of the new left subarray.(recorded in m
 */
 
 class Solution {
-    public int partitionDisjoint(int[] A) {
-        int localMax = a[0], partitionIdx = 0, max = localMax;
-        for (int i = 1; i < a.length; i++)
-            if (localMax > a[i]) {
-                localMax = max;
-                partitionIdx = i;
-            } else max = Math.max(max, a[i]);
-        return partitionIdx + 1;
+    public int partitionDisjoint(int[] nums) {
+        int currMax = nums[0];
+        int possibleMax = nums[0];
+        int length = 1;
+        
+        for (int i = 1; i < nums.length; ++i) {
+            if (nums[i] < currMax) {
+                length = i + 1;
+                currMax = possibleMax;
+            } else {
+                possibleMax = Math.max(possibleMax, nums[i]);
+            }
+        }
+        
+        return length;
     }
 }

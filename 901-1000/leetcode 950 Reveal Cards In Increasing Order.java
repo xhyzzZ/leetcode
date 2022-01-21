@@ -1,4 +1,4 @@
-//leetcode 950 Reveal Cards In Increasing Order
+// leetcode 950 Reveal Cards In Increasing Order
 
 /*
 time: O(n)
