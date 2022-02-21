@@ -7,24 +7,21 @@ space: O(1)
 
 class Solution {
     public int minSwaps(int[] data) {
-        int count = 0;
-        for (int x : data) {
-            if (x == 1) count++;
+        int ones = Arrays.stream(data).sum();
+        int cnt_one = 0, max_one = 0;
+        int left = 0, right = 0;
+
+        while (right < data.length) {
+            // updating the number of 1's by adding the new element
+            cnt_one += data[right++];
+            // maintain the length of the window to ones
+            if (right - left > ones) {
+                // updating the number of 1's by removing the oldest element
+                cnt_one -= data[left++];
+            }
+            // record the maximum number of 1's in the window
+            max_one = Math.max(max_one, cnt_one);
         }
-        if (count <= 1) return 0;
-        
-        int i = 0, j = 0, zeroes = 0;
-        while (j < count) {
-            if (data[j++] == 0) zeroes++;
-        }
-        
-        int res = zeroes;
-        while (j < data.length) {
-            if (data[j++] == 0) zeroes++;
-            if (data[i++] == 0) zeroes--;
-            
-            res = Math.min(res, zeroes);
-        }
-        return res;
+        return ones - max_one;
     }
 }

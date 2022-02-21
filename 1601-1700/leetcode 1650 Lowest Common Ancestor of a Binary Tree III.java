@@ -5,7 +5,6 @@ time: O(n)
 space: O(1)
 */
 
-
 class Solution {
     public Node lowestCommonAncestor(Node p, Node q) {
         Node a = p, b = q;

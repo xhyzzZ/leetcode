@@ -1,4 +1,4 @@
-//leetcode 272 Closest Binary Search Tree Value II
+// leetcode 272 Closest Binary Search Tree Value II
 
 /*
 time: O(n)
@@ -7,25 +7,25 @@ space: O(k)
 
 public class Solution {
     public List<Integer> closestKValues(TreeNode root, double target, int k) {
-        LinkedList<Integer> list = new LinkedList<>();
-        inorder(list, root, target, k);
-        return list;
+        Deque<Integer> deque = new LinkedList<>();
+        inorder(deque, root, target, k);
+        return new ArrayList(deque);
     }
     
-    private void inorder(LinkedList<Integer> list, TreeNode root, double target, int k) {
+    private void inorder(Deque<Integer> deque, TreeNode root, double target, int k) {
         if (root == null) return;
-        inorder(list, root.left, target, k);
+        inorder(deque, root.left, target, k);
         
-        if (list.size() == k) {
-            if (Math.abs(list.getFirst() - target) < Math.abs(root.val - target)) {
+        if (deque.size() == k) {
+            if (Math.abs(deque.getFirst() - target) < Math.abs(root.val - target)) {
                 return;
             } else {
-                list.removeFirst();
+                deque.removeFirst();
             }
         }
         
-        list.addLast(root.val);
-        inorder(list, root.right, target, k);
+        deque.addLast(root.val);
+        inorder(deque, root.right, target, k);
     }
 }
 
@@ -85,31 +85,5 @@ public class Solution {
             p = p.left;
         }
         return popped.val;
-    }
-}
-
-/*
-time: O(n)
-space: O(n)
-*/
-public class Solution {
-    public List<Integer> closestKValues(TreeNode root, double target, int k) {
-        Deque<Integer> dq = new LinkedList<>();
-        inorder(root, dq);
-        while (dq.size() > k) {
-            if (Math.abs(dq.peekFirst() - target) > Math.abs(dq.peekLast() - target))
-                dq.pollFirst();
-            else 
-                dq.pollLast();
-        }
-        
-        return new ArrayList<Integer>(dq);
-    }
-    
-    public void inorder(TreeNode root, Deque<Integer> dq) {
-        if (root == null) return;
-        inorder(root.left, dq);
-        dq.add(root.val);
-        inorder(root.right, dq);
     }
 }

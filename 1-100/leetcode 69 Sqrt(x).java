@@ -1,9 +1,10 @@
-//leetcode 69 Sqrt(x)
+// leetcode 69 Sqrt(x)
 
 /*
 time: O(logn)
 space: O(1)
 */
+
 public class Solution {
     public int mySqrt(int x) {
         int left = 1, right = x;

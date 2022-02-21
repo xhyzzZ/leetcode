@@ -5,7 +5,6 @@ time: O(klogn)
 space: O(n)
 */
 
-
 class Leaderboard {
     Map<Integer, Integer> scores;
     Map<Integer, Integer> players;
@@ -17,8 +16,7 @@ class Leaderboard {
     
     public void addScore(int playerId, int score) {
         int oldScore = players.getOrDefault(playerId, 0), newScore = oldScore + score;
-        if (oldScore > 0) 
-            scores.put(oldScore, scores.get(oldScore) - 1);
+        if (oldScore > 0) scores.put(oldScore, scores.get(oldScore) - 1);
         players.put(playerId, newScore);
         scores.put(newScore, scores.getOrDefault(newScore, 0) + 1);
     }

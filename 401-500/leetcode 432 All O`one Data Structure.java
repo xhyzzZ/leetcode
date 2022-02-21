@@ -1,9 +1,10 @@
-//leetcode 432 All O`one Data Structure
+// leetcode 432 All O`one Data Structure
 
 /*
 time: O(1)
 space: O()
 */
+
 class AllOne {
     class Node {
         int value;
@@ -29,20 +30,26 @@ class AllOne {
         tail.prev = head;
     }
 
+    // 1: {help, DS} <----> 2: {code} <----> 4: {leet}
+
     /** Inserts a new key <Key> with value 1. Or increments an existing key by 1. */
     public void inc(String key) {
         Node node = map.get(key);
-        if (node == null) { // not exist, insert
+        if (node == null) { 
+            // not exist, insert
             Node first = head.next;
-            if (isEmptyList() || first.value != 1) { // list empty or value 1 node not exist
+            if (isEmptyList() || first.value != 1) { 
+                // list empty or value 1 node not exist
                 first = insertNode(head, 1);
             }
             updateKey(first, key);
-        } else { // exist, increment
+        } else { 
+            // exist, increment
             int value = node.value + 1;
             // remove from current node, insert to next node
             Node next = node.next;
-            if (value < next.value) { // next node value equal to new value, insert, or create new node
+            if (value < next.value) { 
+                // next node value equal to new value, insert, or create new node
                 next = insertNode(node, value);
             }
             removeKey(node, key);
@@ -57,11 +64,13 @@ class AllOne {
         if (node.value == 1) { // remove
             map.remove(key);
             removeKey(node, key);
-        } else { // decrement
+        } else { 
+            // decrement
             int value = node.value  - 1;
             // remove from current node, insert to next node
             Node prev = node.prev;
-            if (value > prev.value) { // prev node value equal to new value, insert, or create new node
+            if (value > prev.value) { 
+                // prev node value equal to new value, insert, or create new node
                 prev = insertNode(prev, value);
             }
             removeKey(node, key);

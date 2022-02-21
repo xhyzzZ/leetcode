@@ -2,7 +2,11 @@
 
 /*
 time: O()
-space: O(N + L)
+space: O(N + L) 
+
+N be the total number of integers within the nested list, 
+L be the total number of lists within the nested list, 
+D be the maximum nesting depth (maximum number of lists inside each other).
 */
 
 /**
@@ -32,10 +36,12 @@ public class NestedIterator implements Iterator<Integer> {
         }
     }
 
+    // next(): O(1) or O(L/N)
     public Integer next() {
         return hasNext() ? stack.pop().getInteger() : null;
     }
 
+    // hasNext(): O(1) or O(L/N)
     public boolean hasNext() {
         while (!stack.isEmpty()) {
             NestedInteger cur = stack.peek();

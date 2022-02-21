@@ -5,7 +5,6 @@ time: O(n)
 space: O(n)
 */
 
-
 class Solution {
     public int[] findingUsersActiveMinutes(int[][] logs, int k) {
         int[] res = new int[k];

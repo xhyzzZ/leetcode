@@ -5,6 +5,11 @@ time: O(klogk)
 space: O(k)
 */
 
+// Basic idea: Use min_heap to keep track on next minimum pair sum, 
+// and we only need to maintain K possible candidates in the data structure
+// For every numbers in nums1, its best partner(yields min sum) always strats from nums2[0] 
+// since arrays are all sorted; And for a specific number in nums1, its next candidate 
+// sould be [this specific number] + nums2[current_associated_index + 1], unless out of boundary;
 class Solution {
     public List<int[]> kSmallestPairs(int[] nums1, int[] nums2, int k) {
         PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> a[0] + a[1] - b[0] - b[1]);

@@ -1,4 +1,4 @@
-//leetcode 450 Delete Node in a BST
+// leetcode 450 Delete Node in a BST
 
 /*
 time: O(logn)

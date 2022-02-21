@@ -1,12 +1,13 @@
-//leetcode 671 Second Minimum Node In a Binary Tree
+// leetcode 671 Second Minimum Node In a Binary Tree
 
 /*
 time: O(n)
 space: O(h)
-idea: 
-    1. stop recurse when curRoot.val > min (problem property)
-    2. child reports its min to parent
 */
+
+// idea: 
+// 1. stop recurse when curRoot.val > min (problem property)
+// 2. child reports its min to parent
 
 class Solution {
     public int findSecondMinimumValue(TreeNode root) {

@@ -1,4 +1,4 @@
-//leetcode 187 Repeated DNA Sequences
+// leetcode 187 Repeated DNA Sequences
 
 /*
 time: O()
@@ -11,7 +11,7 @@ public class Solution {
 	    Set<Integer> doubleWords = new HashSet<>();
 	    List<String> rv = new ArrayList<>();
 	    char[] map = new char[26];
-	    //map['A' - 'A'] = 0;
+	    // map['A' - 'A'] = 0;
 	    map['C' - 'A'] = 1;
 	    map['G' - 'A'] = 2;
 	    map['T' - 'A'] = 3;

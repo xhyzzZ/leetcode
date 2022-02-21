@@ -1,4 +1,4 @@
-//leetcode 381 Insert Delete GetRandom O(1) - Duplicates allowed
+// leetcode 381 Insert Delete GetRandom O(1) - Duplicates allowed
 
 /*
 time: O(1)

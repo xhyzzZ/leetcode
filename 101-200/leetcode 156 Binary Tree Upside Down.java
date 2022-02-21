@@ -1,16 +1,13 @@
-//leetcode 156 Binary Tree Upside Down
-
+// leetcode 156 Binary Tree Upside Down
 
 /*
 time: O(n)
-space: O(1)
+space: O(logn)
 */
 
 public class Solution {
 	public TreeNode upsideDownBinaryTree(TreeNode root) {
-		if (root == null || root.left == null) {
-			return root;
-		}
+		if (root == null || root.left == null) return root;
 		TreeNode newRoot = upsideDownBinaryTree(root.left);
 		root.left.left = root.right; // node 2 left children
 		root.left.right = root; // node 2 right children
@@ -19,6 +16,11 @@ public class Solution {
 		return newRoot;
 	}
 }
+
+/*
+time: O(n)
+space: O(1)
+*/
 
 public class Solution {
     public TreeNode upsideDownBinaryTree(TreeNode root) {

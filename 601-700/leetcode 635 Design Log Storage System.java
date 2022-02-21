@@ -6,44 +6,39 @@ space: O()
 */
 
 class LogSystem {
-	Map<Integer, String> map;
+	private TreeMap<String, List<Integer>> map;
+    private Map<String, Integer> indexes;
+    private String min = "2000:01:01:00:00:00", max = "2017:12:31:23:59:59";
+
     public LogSystem() {
-        map = new HashMap<>();
+        map = new TreeMap<>();
+        indexes = new HashMap<>();
+        indexes.put("Year", 4);
+        indexes.put("Month", 7);
+        indexes.put("Day", 10);
+        indexes.put("Hour", 13);
+        indexes.put("Minute", 16);
+        indexes.put("Second", 19);
     }
     
+    // The TreeMap is maintained internally as a Red-Black(balanced) tree. 
+    // Thus, the putmethod takes O(log(n)) time
     public void put(int id, String timestamp) {
-        map.put(id, timestamp);
+        if (!map.containsKey(timestamp)) {
+            map.put(timestamp, new ArrayList<>());
+        }
+        
+        map.get(timestamp).add(id);
     }
     
-    public List<Integer> retrieve(String s, String e, String gra) {
-        int x = 0;
-        switch (gra) {
-            case "Year":
-                x = 4; 
-                break;
-            case "Month":
-                x = 7;
-                break;
-            case "Day":
-                x = 10;
-                break;
-            case "Hour":
-                x = 13;
-                break;
-            case "Minute":
-                x = 16;
-                break;
-            case "Second":
-                x = 19;
-                break;
-        }
-        s = s.substring(0, x);
-        e = e.substring(0, x);
-        List<Integer> ans = new ArrayList<>();
-        for (Integer i : map.keySet()) {
-            String ss = map.get(i).substring(0, x);
-            if (ss.compareTo(s) >= 0 && ss.compareTo(e) <= 0) ans.add(i);
-        }
-        return ans;
+    public List<Integer> retrieve(String start, String end, String granularity) {
+        List<Integer> result = new ArrayList<>();
+        
+        Map<String, List<Integer>> subMap = map.subMap(
+            start.substring(0, indexes.get(granularity)) + min.substring(indexes.get(granularity)), true,
+            end.substring(0, indexes.get(granularity)) + max.substring(indexes.get(granularity)), true
+        );
+        
+        return subMap.values().stream().flatMap(List::stream).collect(Collectors.toList());
     }
 }

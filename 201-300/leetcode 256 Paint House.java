@@ -1,4 +1,4 @@
-//leetcode 256 Paint House
+// leetcode 256 Paint House
 
 /*
 time: O(n)

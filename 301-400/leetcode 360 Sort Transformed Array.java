@@ -1,13 +1,14 @@
- // leetcode 360 Sort Transformed Array
+// leetcode 360 Sort Transformed Array
 
 /*
 time: O(n)
 space: O(n)
-The difference is when a > 0, they are larger at two ends, 
-when a < 0, they are smaller at two ends. So when a > 0, 
-we just start to fill out the result array from end to beginning, 
-in other case, we start filling out it from start to the end of result array.
 */
+
+// The difference is when a > 0, they are larger at two ends, 
+// when a < 0, they are smaller at two ends. So when a > 0, 
+// we just start to fill out the result array from end to beginning, 
+// in other case, we start filling out it from start to the end of result array.
 class Solution {
 	public int[] sortTransformedArray(int[] nums, int a, int b, int c) {
 	    int n = nums.length, start = 0, end = n - 1; 

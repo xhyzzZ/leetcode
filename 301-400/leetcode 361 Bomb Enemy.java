@@ -1,49 +1,32 @@
-//leetcode 361 Bomb Enemy
+// leetcode 361 Bomb Enemy
 
 /*
-time: O()
-space: O()
+time: O(mn)
+space: O(n)
 */
 
 public class Solution {
     public int maxKilledEnemies(char[][] grid) {
-        if (grid == null || grid.length == 0) {
-            return 0;
-        }
-        int m = grid.length, n = grid[0].length;
-        Spot[][] spots = new Spot[m][n];
+        int m = grid.length;
+        int n = grid[0].length;
+        int res = 0;
+        int rowhits = 0;
+        int[] colhits = new int[n];
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
-                spots[i][j] = new Spot();
-                if (grid[i][j] == 'W') {
-                    continue;
+                if (j == 0 || grid[i][j - 1] == 'W') {
+                    rowhits = 0;
+                    for (int k = j; k < n && grid[i][k] != 'W'; k++)
+                        rowhits += grid[i][k] == 'E' ? 1 : 0;
                 }
-                spots[i][j].up = (i == 0 ? 0 : spots[i - 1][j].up) + (grid[i][j] == 'E' ? 1 : 0);
-                spots[i][j].left = (j == 0 ? 0 : spots[i][j - 1].left) + (grid[i][j] == 'E' ? 1 : 0);
+                if (i == 0 || grid[i - 1][j] == 'W') {
+                    colhits[j] = 0;
+                    for (int k = i; k < m && grid[k][j] != 'W'; k++)
+                        colhits[j] += grid[k][j] == 'E' ? 1 : 0;
+                }
+                if (grid[i][j] == '0') res = Math.max(res, rowhits + colhits[j]);
             }
         }
-        
-        int maxKill = 0;
-        for (int i = m - 1; i >= 0; i--) {
-            for (int j = n - 1; j >= 0; j--) {
-                if (grid[i][j] == 'W') {
-                    continue;
-                }
-                spots[i][j].bottom = (i == m - 1 ? 0 : spots[i + 1][j].bottom) + (grid[i][j] == 'E' ? 1 : 0);
-                spots[i][j].right = (j == n - 1 ? 0 : spots[i][j + 1].right) + (grid[i][j] == 'E' ? 1 : 0);
-                
-                if (grid[i][j] == '0') {
-                    maxKill = Math.max(maxKill, spots[i][j].up + spots[i][j].left + spots[i][j].bottom + spots[i][j].right);
-                }
-            }
-        }
-        return maxKill;
+        return res;
     }
-}
-
-class Spot {
-    int up; // enemies to its up including itself
-    int left; // enemies to its left including itself
-    int bottom;
-    int right;
 }
