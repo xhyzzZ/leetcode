@@ -5,7 +5,6 @@ time: O(n + klogk)
 space: O(n)
 */
 
-
 class Solution {
     public int[] findOriginalArray(int[] changed) {
         int n = changed.length, i = 0;

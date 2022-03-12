@@ -7,9 +7,16 @@ space: O(n)
 
 class StockPrice {
 
-    Map<Integer, Integer> prices = new HashMap<>();
-    TreeMap<Integer, Integer> ordered = new TreeMap<>();
+    // map[timestamp, price]
+    Map<Integer, Integer> prices;
+    // treemap[price, freq]
+    TreeMap<Integer, Integer> ordered;
     int latestTime = -1;
+
+    public StockPrice() {
+        prices = new HashMap<>();
+        ordered = new TreeMap<>();
+    }
 
     public void update(int timestamp, int price) {
         if (prices.containsKey(timestamp)) {

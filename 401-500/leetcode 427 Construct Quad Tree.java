@@ -1,36 +1,33 @@
 // leetcode 427 Construct Quad Tree
 
 /*
-time: O()
+time: O(n^2)
 space: O()
 */
 
 class Solution {
-    public Node construct(int[][] grid) { 
-    	return build(0, 0, grid.length - 1, grid.length - 1, grid);
+    public Node construct(int[][] grid) {
+        return helper(grid, 0, 0, grid.length);
     }
 
-    private Node build(int r1, int c1, int r2, int c2, int[][] grid) {
-        if (r1 > r2 || c1 > c2) return null;
-        boolean isLeaf = true;
-        int val = grid[r1][c1];
-        for(int i = r1; i <= r2; i++) {
-            for(int j = c1; j <= c2; j++) {
-            	if(grid[i][j] != val) {
-                    isLeaf = false;
-                    break;
-                }
-            }    
+    private Node helper(int[][] grid, int x, int y, int len) {
+        if (len == 1) return new Node(grid[x][y] != 0, true, null, null, null, null);
+        Node res = new Node();
+        Node topLeft = helper(grid, x, y, len / 2);
+        Node topRight = helper(grid, x, y + len / 2, len / 2);
+        Node bottomLeft = helper(grid, x + len / 2, y, len / 2);
+        Node bottomRight = helper(grid, x + len / 2, y + len / 2, len / 2);
+        if (topLeft.isLeaf && topRight.isLeaf && bottomLeft.isLeaf && bottomRight.isLeaf
+           && topLeft.val == topRight.val && topRight.val == bottomLeft.val && bottomLeft.val == bottomRight.val) {
+            res.isLeaf = true;
+            res.val = topLeft.val;
+        } else {
+            res.topLeft = topLeft;
+            res.topRight = topRight;
+            res.bottomLeft = bottomLeft;
+            res.bottomRight = bottomRight;
         }
-        if(isLeaf) {
-            return new Node(val == 1, true, null, null, null, null);
-        }
-        int rowMid = (r1 + r2) / 2, colMid = (c1 + c2) / 2;
-        return new Node(false, false,
-            build(r1, c1, rowMid, colMid, grid),//top left 
-            build(r1, colMid + 1, rowMid, c2, grid),//top right
-            build(rowMid + 1, c1, r2, colMid, grid),//bottom left 
-            build(rowMid + 1, colMid + 1, r2, c2, grid));//bottom right
+        return res;
     }
 }
 	

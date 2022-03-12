@@ -1,4 +1,4 @@
-//leetcode 539 Minimum Time Difference
+// leetcode 539 Minimum Time Difference
 
 /*
 time: O(n)

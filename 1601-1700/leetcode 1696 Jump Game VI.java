@@ -9,7 +9,12 @@ class Solution {
     public int maxResult(int[] nums, int k) {
         int len = nums.length;
         int[] score = new int[len];
+        // score[i] represents the max score we can get ending at index i
+        // score[i] = max(score[i-k], ..., score[i-1]) + nums[i]
+        // However, this equation needs O(k) to calculate score[i], 
+        // which makes the overall complexity come to O(Nk)
         score[0] = nums[0];
+        // monotonically decreasing
         Deque<Integer> deque = new LinkedList<>();
         deque.offerLast(0);
         for (int i = 1; i < len; i++) {

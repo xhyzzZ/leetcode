@@ -6,6 +6,11 @@ space: O(v + e)
 */
 
 class Solution {
+    // Assumption: ingredients do not contain any recipe.
+
+    // For each recipe, count its dependent ingredients as in degree; Store (ingredient, recipes that dependent on it) as HashMap;
+    // Use the supplies as the starting points of topological sort;
+    // Use topogical sort to decrease the in degree of recipes, whenever the in-degree reaches 0, add it to return list.
     public List<String> findAllRecipes(String[] recipes, List<List<String>> ingredients, String[] supplies) {
         // Construct directed graph and count in-degrees.
         Map<String, Set<String>> graph = new HashMap<>();

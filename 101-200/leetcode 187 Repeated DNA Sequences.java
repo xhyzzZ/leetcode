@@ -19,7 +19,9 @@ public class Solution {
 	    for (int i = 0; i < s.length() - 9; i++) {
 	        int v = 0;
 	        for (int j = i; j < i + 10; j++) {
+	        	// move v left 2 bit, for example 01 after moving 0100
 	            v <<= 2;
+	            // Append 2 bits, 0100 | 11 => 0111
 	            v |= map[s.charAt(j) - 'A'];
 	        }
 	        if (!words.add(v) && doubleWords.add(v)) {

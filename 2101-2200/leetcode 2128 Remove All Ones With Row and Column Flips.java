@@ -5,6 +5,14 @@ time: O(mn)
 space: O(1)
 */
 
+// Each row or col can flip at most once. Flip twice convert it back to original.
+// Refer to LC73, we pick row 0 and col 0 as reference.
+// In order to make the whole grid 0,
+// row 0 and col 0 need to be 0.
+
+// Thus if there is a 1 in row 0 or col 0, we have to flip.
+// And the flip should not affect the other 0 in the row 0 or col 0.
+// so we flip the row if we find 1 in col 0 and flip the col if we find 0 in row 0.
 class Solution {
     public boolean removeOnes(int[][] grid) {
         int m = grid.length, n = grid[0].length;

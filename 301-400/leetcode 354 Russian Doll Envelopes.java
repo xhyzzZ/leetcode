@@ -2,9 +2,11 @@
 
 /*
 time: O(nlogn)
-space: O()
+space: O(n)
 */
 
+// Sort the array. Ascend on width and descend on height if width are same.
+// Find the longest increasing subsequence based on height.
 class Solution {
     public int maxEnvelopes(int[][] envelopes) {
         if (envelopes == null || envelopes.length == 0 || 
@@ -20,13 +22,13 @@ class Solution {
 	                return arr1[0] - arr2[0];
 	       } 
 	    });
-	    int dp[] = new int[envelopes.length];
+	    int[] dp = new int[envelopes.length];
 	    int res = 0;
 	    for (int[] envelope : envelopes) {
 	        int left = 0, right = res, mid = 0;    // right = res
 	        while (left < right) {
 	        	mid = (right - left) / 2 + left;
-	        	if(dp[mid] < envelope[1]) left = mid + 1;
+	        	if (dp[mid] < envelope[1]) left = mid + 1;
 	        	else right = mid;
 	        }
 

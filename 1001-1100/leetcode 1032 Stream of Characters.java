@@ -11,11 +11,14 @@ class StreamChecker {
 	    boolean isWord;
 	}
     TrieNode root = new TrieNode();
-    StringBuilder sb = new StringBuilder();;
+    StringBuilder sb = new StringBuilder();
+
+    // constructor: O(N⋅M), where N is a number of input words, and M is the word length
     public StreamChecker(String[] words) {
         buildTrie(words); 
     }
     
+    // Time complexity: O(M), where M is a max word length, i.e. the depth of trie.
     public boolean query(char letter) {
         sb.append(letter);
         TrieNode node = root;
