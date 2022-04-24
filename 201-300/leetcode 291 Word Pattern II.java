@@ -1,7 +1,9 @@
-//leetcode 291 Word Pattern II
+// leetcode 291 Word Pattern II
 
 /*
-time: O()
+string length is n, and pattern string length is m
+time: O() the problem is more like slicing the string into m pieces. How many slicing ways? C(n^m). 
+For each slice, it takes O(n) to validate. So the total complexity is O(n * C(n^m))
 space: O()
 */
 
@@ -12,7 +14,7 @@ public class Solution {
     	return isMatch(str, 0, pattern, 0, map, set);
     }
   
-  	boolean isMatch(String str, int i, String pat, int j, Map<Character, String> map, Set<String> set) {
+  	private boolean isMatch(String str, int i, String pat, int j, Map<Character, String> map, Set<String> set) {
 	    // base case
 	    if (i == str.length() && j == pat.length()) return true;
 	    if (i == str.length() || j == pat.length()) return false;
@@ -38,7 +40,7 @@ public class Solution {
 	        map.put(c, p);
 	        set.add(p);
 	        // continue to match the rest
-	        if(isMatch(str, k + 1, pat, j + 1, map, set)) {
+	        if (isMatch(str, k + 1, pat, j + 1, map, set)) {
 	        	return true;
 	        }
 	        // backtracking

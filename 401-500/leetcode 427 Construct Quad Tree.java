@@ -7,27 +7,26 @@ space: O()
 
 class Solution {
     public Node construct(int[][] grid) {
-        return helper(grid, 0, 0, grid.length);
+        return construct(grid, 0, grid.length - 1, 0, grid[0].length - 1);
     }
-
-    private Node helper(int[][] grid, int x, int y, int len) {
-        if (len == 1) return new Node(grid[x][y] != 0, true, null, null, null, null);
-        Node res = new Node();
-        Node topLeft = helper(grid, x, y, len / 2);
-        Node topRight = helper(grid, x, y + len / 2, len / 2);
-        Node bottomLeft = helper(grid, x + len / 2, y, len / 2);
-        Node bottomRight = helper(grid, x + len / 2, y + len / 2, len / 2);
-        if (topLeft.isLeaf && topRight.isLeaf && bottomLeft.isLeaf && bottomRight.isLeaf
-           && topLeft.val == topRight.val && topRight.val == bottomLeft.val && bottomLeft.val == bottomRight.val) {
-            res.isLeaf = true;
-            res.val = topLeft.val;
-        } else {
-            res.topLeft = topLeft;
-            res.topRight = topRight;
-            res.bottomLeft = bottomLeft;
-            res.bottomRight = bottomRight;
+    
+    private Node construct(int[][] grid, int x1, int x2, int y1, int y2) {
+        if (x1 == x2) {
+            boolean val = grid[x1][y1] == 1 ? true : false;
+            return new Node(val, true, null, null, null, null);
         }
-        return res;
+        int rowMid = (x1 + x2) / 2;
+        int colMid = (y1 + y2) / 2;
+        Node topleft = construct(grid, x1, rowMid, y1, colMid);                       
+        Node topright = construct(grid, x1, rowMid, colMid + 1, y2);                       
+        Node bottomleft = construct(grid, rowMid + 1, x2, y1, colMid);                       
+        Node bottomright = construct(grid, rowMid + 1, x2, colMid + 1, y2);             
+        if (topleft.isLeaf && topright.isLeaf && bottomleft.isLeaf && bottomright.isLeaf 
+            && topright.val == topleft.val && topright.val == bottomleft.val && topright.val == bottomright.val) {
+            return new Node(topleft.val, true, null, null, null, null);
+        } else {
+            return new Node(false, false, topleft, topright, bottomleft, bottomright);
+        }     
     }
 }
 	

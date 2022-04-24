@@ -1,7 +1,7 @@
 // leetcode 465 Optimal Account Balancing
 
 /*
-time: O()
+time: n! because T(n) = n*T(n-1)
 space: O()
 */
 

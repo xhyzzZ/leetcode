@@ -6,12 +6,12 @@ space: O(n)
 */
 
 class Solution {
-  	public String longestDupSubstring(String S) {
-	    int n = S.length();
+  	public String longestDupSubstring(String s) {
+	    int n = s.length();
 	    // convert string to array of integers
 	    // to implement constant time slice
 	    int[] nums = new int[n];
-	    for (int i = 0; i < n; ++i) nums[i] = (int) S.charAt(i) - (int) 'a';
+	    for (int i = 0; i < n; ++i) nums[i] = (int) s.charAt(i) - (int) 'a';
 	    // base value for the rolling hash function
 	    int a = 26;
 	    // modulus value for the rolling hash function to avoid overflow
@@ -27,7 +27,7 @@ class Solution {
 	    }
 
 	    int start = search(left - 1, a, modulus, n, nums);
-	    return S.substring(start, start + left - 1);
+	    return s.substring(start, start + left - 1);
 	}
 
 	/*
@@ -36,7 +36,7 @@ class Solution {
 	Return start position if the substring exits and -1 otherwise.
 	*/
 	private int search(int mid, int a, long modulus, int n, int[] nums) {
-	  	// compute the hash of string S[:mid]
+	  	// compute the hash of string s[:mid]
 	    long h = 0;
 	    for (int i = 0; i < mid; ++i) h = (h * a + nums[i]) % modulus;
 
